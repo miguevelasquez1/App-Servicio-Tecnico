@@ -1,0 +1,61 @@
+<ion-content [fullscreen]="true">
+
+  <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/" slot="start"></ion-icon>
+
+  <h1 class="registrarse">Registrarse</h1>
+
+  <div id="container">
+    <form [formGroup]="authService.authForm" (ngSubmit)="onSubmitRegister(this.authService.authForm.value)">
+
+      <ion-input
+        type="hidden"
+        formControlName ="$key">
+      </ion-input>
+
+      <ion-input
+        type="hidden"
+        formControlName="urlImage">
+      </ion-input>
+
+      <ion-item>
+        <ion-input
+          name
+          type="name"
+          name="name"
+          formControlName="name"
+          placeholder="Nombre">
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          email
+          type="email"
+          name="email"
+          formControlName="email"
+          placeholder="Correo electronico">
+          <ion-icon name="mail-outline"></ion-icon>
+      </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          password
+          type="password"
+          name="password"
+          formControlName="password"
+          placeholder="Contraseña"
+          minlength="6">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+        </ion-input>
+      </ion-item>
+
+
+      <ion-button expand="block" type="onSubmitRegister()">Crear usuario</ion-button>
+
+      <a routerLink="/login">Regresar</a>
+
+    </form>
+  </div>
+</ion-content>

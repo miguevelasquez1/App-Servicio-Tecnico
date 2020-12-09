@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/" slot="start"></ion-icon>
+    <!-- <img class="arrow-back" src="../../../../../assets//images/arrow-back-up.png" width="32px" routerLink="/" slot="start"> -->
+    <ion-title>Permisos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="div-principal">
+
+    <!-- <ion-input class="search" type="text" name="filterRegistro" placeholder="Search..." [(ngModel)]="filterRegistro"></ion-input> -->
+  
+      <ion-item>
+  
+        <ion-grid>
+  
+          <ion-card>
+            <ion-row id="registro-list">
+              <ion-col>Nombre del usuario</ion-col>
+              <ion-col>Email del usuario</ion-col>
+              <ion-col>Tecnico</ion-col>
+            </ion-row>
+          </ion-card>
+  
+          <ion-card>
+            <div id="square">
+              <div id="row-section" *ngFor="let user of list">
+                <ion-row class="ion-align-items-center" id="registro">
+                  <!-- <form [formGroup]="this.authService.authForm"> -->
+                    <ion-col class="col-element-name">{{user.name}}</ion-col>
+                    <ion-col class="col-element">{{user.email}}</ion-col>
+                    <ion-col class="col-element-action">
+                      <ion-toggle [(ngModel)]="user.tecnico" (ionChange)="isTecnico(user)"></ion-toggle>
+                    </ion-col>
+                  <!-- </form> -->
+                </ion-row>
+              </div>
+          </div>
+          </ion-card>
+          
+          
+        </ion-grid>
+      </ion-item>
+    </div>
+    
+</ion-content>

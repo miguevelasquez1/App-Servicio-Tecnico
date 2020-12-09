@@ -1,0 +1,43 @@
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../../../../../assets/fonts/Poppins-Light.ttf');
+  }
+  
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+* {
+    font-family: Poppins-Medium;
+}
+
+ion-item {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-left: 25px;
+    font-size: 40px;
+}
+
+.not-chat {
+    margin: 250px 10px 0 10px;
+    text-align: center;
+}
+
+.perfil-photo {
+    margin: 0 0 0;
+}
+
+.perfil-name {
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.col-perfil-name {
+    height: 70px;
+}

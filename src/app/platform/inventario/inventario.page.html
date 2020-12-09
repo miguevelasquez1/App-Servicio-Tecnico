@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>inventario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="2" offset="1">
+        <h1>Inventario</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div id="container">
+    <ion-item id="item-principal">
+      <ion-grid>
+        <ion-row id="inventario-list">
+          <ion-col>Imagen</ion-col>
+          <ion-col>Producto</ion-col>
+          <ion-col>Marca</ion-col>
+          <ion-col>Cantidad</ion-col>
+          <ion-col>Fecha</ion-col>
+          <ion-col></ion-col>
+  
+        </ion-row>
+        <ion-row *ngFor="let inventario of inventarioList" class="ion-align-items-center" id="inventario">
+          <ion-col>{{inventario.nombre}}</ion-col>
+          <ion-col>{{inventario.marca}}</ion-col>
+          <ion-col>{{inventario.cantidad}}</ion-col>
+          <ion-col>{{inventario.fecha}}</ion-col>
+          <ion-col>{{inventario.imagen}}</ion-col>
+          <ion-col>AGREGAR INVENTARIO</ion-col>
+          
+        </ion-row>
+
+        <ion-row>
+
+            <ion-col>
+              <ion-input
+                type="name"
+                name="imagen"
+                #imagen="ngModel"
+                [(ngModel)]="inventarioService.selectedInventario.imagen"
+                placeholder="Imagen">
+              </ion-input>
+            </ion-col>
+
+            <ion-col>
+              <ion-input
+                type="name"
+                name="producto"
+                #producto="ngModel"
+                [(ngModel)]="inventarioService.selectedInventario.nombre"
+                placeholder="Producto">
+              </ion-input>
+            </ion-col>
+
+            <ion-col>
+              <ion-input
+                type="name"
+                name="marca"
+                #marca="ngModel"
+                [(ngModel)]="inventarioService.selectedInventario.marca"
+                placeholder="Marca">
+              </ion-input>
+            </ion-col>
+
+            <ion-col>
+              <ion-input
+                type="name"
+                name="cantidad"
+                #cantidad="ngModel"
+                [(ngModel)]="inventarioService.selectedInventario.cantidad"
+                placeholder="Cantidad">
+              </ion-input>
+            </ion-col>
+
+            <ion-col>
+              <ion-input
+                type="name"
+                name="fecha"
+                #fecha="ngModel"
+                [(ngModel)]="inventarioService.selectedInventario.fecha"
+                placeholder="Fecha">
+              </ion-input>
+            </ion-col>
+
+            <ion-col>
+              <ion-button>Agregar inventario</ion-button>
+            </ion-col>
+
+        </ion-row>
+
+      </ion-grid>
+    </ion-item>
+  
+  </div>
+</ion-content>

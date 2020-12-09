@@ -1,0 +1,70 @@
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../../../../../assets/fonts/Poppins-Light.ttf');
+  }
+  
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+.item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
+    font-family: Poppins-light;
+}
+
+* {
+    font-family: Poppins-Medium;
+}
+
+ion-content {
+    text-align: center;
+    --background: #f6f6f6;
+}
+
+.arrow-back {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.photo {
+    margin: 50px 50px 0 50px;
+    border-radius: 200px;
+    border: 3px solid #ffffff;
+}
+
+#edit {
+    font-size: 64px;
+    color: #efefef;
+}
+
+#capa {
+    width: 240px;
+    height: 240px;
+    border-radius: 200px;
+}
+
+ion-list {
+    border-radius: 20px;
+    margin: 0 5% 5% 5%;
+}
+
+ion-item {
+    margin: 5%;
+}
+
+ion-list, ion-input, ion-label, ion-item {
+    --background: transparent;
+}
+
+ion-input {
+    font-family: Poppins-Medium;
+    --color: var(--ion-color-tertiary-tint);
+}
+
+.list-ios {
+    background: none;
+}
+
+.native-input.sc-ion-input-ios {
+    color: white;
+}

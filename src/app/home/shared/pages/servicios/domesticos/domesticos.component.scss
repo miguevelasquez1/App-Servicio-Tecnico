@@ -1,0 +1,38 @@
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../../../../../../assets/fonts/Poppins-Light.ttf');
+}
+  
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+:root {
+    color:white;
+}
+
+.arrow-back {
+    font-size: 24px;
+    margin: 16px 16px 0 24px;
+}
+
+.foo.alert-header {
+    font-family: Poppins-Medium;
+}
+
+#alert-1-hdr {
+    font-family: Poppins-Medium;
+}
+
+.alert-title.sc-ion-alert-md {
+    font-family: Poppins-Medium;
+}
+
+.alert-wrapper.sc-ion-alert-ios {
+    font-family: Poppins-Medium;
+}
+
+.alert-input.sc-ion-alert-md {
+    font-family: Poppins-Light;
+}

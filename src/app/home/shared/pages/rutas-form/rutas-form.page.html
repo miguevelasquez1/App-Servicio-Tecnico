@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/mis-rutas" slot="start"></ion-icon>
+    <!-- <img class="arrow-back" src="../../../../../assets//images/arrow-back-up.png" width="32px" routerLink="/rutas" slot="start"> -->
+    <ion-title>Formulario de ruta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="oli">
+    <ion-grid>
+       <ion-row>
+          <ion-col class="ion-align-items-center" class="ion-justify-content-center" size="12">
+           <form [formGroup]="registroService.form" (ngSubmit)="onSubmit()">
+     
+              <ion-input
+                 type="hidden"
+                 formControlName ="$key">
+              </ion-input>
+
+               <ion-input
+                  type="hidden"
+                  formControlName ="userUid"
+                  [(ngModel)]="userUid">
+               </ion-input>
+
+               <ion-input
+                  type="hidden"
+                  formControlName ="userName"
+                  [(ngModel)]="userName">
+               </ion-input>
+ 
+              <ion-item>
+                 <ion-label position="floating">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    Fecha
+                 </ion-label>
+                <ion-input
+                  required
+                   type="date"
+                   name="fecha"
+                   formControlName="fecha">
+                </ion-input>
+             </ion-item>
+     
+                <ion-item>
+                  <ion-label position="floating">
+                     Nombre del técnico
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="name"
+                      name="nombreTecnico"
+                      formControlName="nombreTecnico">
+                </ion-input>
+                </ion-item>
+          
+                <ion-item>
+                  <ion-label position="floating">
+                     Nombre del cliente
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="name"
+                      name="nombreCliente"
+                      formControlName="nombreCliente">
+                   </ion-input>
+                </ion-item>
+          
+                <ion-item>
+                  <ion-label position="floating">
+                     Cedula del cliente
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="text"
+                      name="cedulaCliente"
+                      formControlName="cedulaCliente">
+                   </ion-input>
+                </ion-item>
+          
+                <ion-item>
+                  <ion-label position="floating">
+                     Servicio
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="text"
+                      name="servicio"
+                      formControlName="servicio">
+                   </ion-input>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label position="floating">
+                     Especificaciones del servicio
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="text"
+                      name="producto"
+                      formControlName="producto">
+                   </ion-input>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label position="floating">
+                     Direccion
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="text"
+                      name="direccion"
+                      formControlName="direccion">
+                   </ion-input>
+                </ion-item>
+          
+                <ion-item>
+                  <ion-label position="floating">
+                     Precio
+                  </ion-label>
+                   <ion-input
+                     required
+                      type="number"
+                      name="precio"
+                      formControlName="precio">
+                   </ion-input>
+                </ion-item>
+                
+                   <ion-button type="onSubmit()">Agregar registro</ion-button>
+                   <ion-button (click)="resetForm(registroService.form)">Reset</ion-button>
+             
+             </form>
+          </ion-col>
+       </ion-row>
+     </ion-grid>
+ 
+ </div>
+</ion-content>

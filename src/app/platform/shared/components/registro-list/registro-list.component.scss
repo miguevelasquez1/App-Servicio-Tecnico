@@ -1,0 +1,79 @@
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+.search {
+    margin-left: 10px;
+    padding-left: 15px;
+}
+
+.col-element {
+    font-size: 11.5px;
+}
+
+.col-element-date {
+    font-size: 9.5px;
+}
+
+#div-principal {
+    margin: 30px;
+}
+
+// #item-principal {
+//     margin: 30px;
+//     border-radius: 20px;
+//     --background: #f0f0f0;
+//     font-family: Poppins-Medium;
+//     margin-top: 100px;
+// }
+
+#registro {
+    color: #000000;
+}
+
+#registro-list {
+    color: #808080;
+    padding-left: 7px;
+    font-weight: bold;
+}
+
+#square {
+    background: #ffffff;
+    border-radius: 5px;
+}
+
+#row-section {
+    background: #ffffff;
+    border-bottom: #e0e0e0 solid 0.2px;
+    font-size: 11.5px;
+    padding-left: 7px
+}
+
+* {
+    font-family: Poppins-Medium;
+    font-size: 13px;
+}
+
+ion-grid {
+    padding: 0;
+    margin: 0;
+}
+
+ion-header {
+    background: #030328;
+    color: white;
+}
+
+ion-item {
+    --background: transparent;
+}
+
+ion-col {
+    color: #030328;
+}
+
+h1 {
+    color: #f0f0f0;
+}
+

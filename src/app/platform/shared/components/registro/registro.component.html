@@ -1,0 +1,92 @@
+<div id="oli">
+   <ion-grid>
+      <ion-row>
+         <ion-col class="ion-align-items-center" class="ion-justify-content-center" size="12">
+          <form [formGroup]="registroService.form" (ngSubmit)="onSubmit()">
+    
+             <ion-input
+                type="hidden"
+                formControlName ="$key">
+             </ion-input>
+
+             <ion-item>
+               <ion-input
+                  type="date"
+                  name="fecha"
+                  formControlName="fecha">
+               </ion-input>
+            </ion-item>
+    
+               <ion-item>
+                  <ion-input
+                     type="name"
+                     name="nombreTecnico"
+                     formControlName="nombreTecnico"
+                     placeholder="Nombre del tecnico">
+               </ion-input>
+               </ion-item>
+         
+               <ion-item>
+                  <ion-input
+                     type="name"
+                     name="nombreCliente"
+                     formControlName="nombreCliente"
+                     placeholder="Nombre del cliente">
+                  </ion-input>
+               </ion-item>
+         
+               <ion-item>
+                  <ion-input
+                     type="text"
+                     name="cedulaCliente"
+                     formControlName="cedulaCliente"
+                     placeholder="Cedula del cliente">
+                  </ion-input>
+               </ion-item>
+         
+               <ion-item>
+                  <ion-input
+                     type="text"
+                     name="servicio"
+                     formControlName="servicio"
+                     placeholder="Servicio">
+                  </ion-input>
+               </ion-item>
+               
+               <ion-item>
+                  <ion-input
+                     type="text"
+                     name="producto"
+                     formControlName="producto"
+                     placeholder="Especificaciones del servicio">
+                  </ion-input>
+               </ion-item>
+               
+               <ion-item>
+                  <ion-input
+                     type="text"
+                     name="direccion"
+                     formControlName="direccion"
+                     placeholder="Direccion">
+                  </ion-input>
+               </ion-item>
+         
+               <ion-item>
+                  <ion-input
+                     type="number"
+                     name="precio"
+                     formControlName="precio"
+                     placeholder="Precio">
+                  </ion-input>
+               </ion-item>
+               
+                  <ion-button type="onSubmit()">Agregar registro</ion-button>
+                  <ion-button (click)="resetForm(registroService.form)">Reset</ion-button>
+            
+            </form>
+         </ion-col>
+      </ion-row>
+    </ion-grid>
+
+</div>
+

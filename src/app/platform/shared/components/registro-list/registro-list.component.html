@@ -1,0 +1,55 @@
+<div id="div-principal">
+
+  <ion-input class="search" type="text" name="filterRegistro" placeholder="Search..." [(ngModel)]="filterRegistro"></ion-input>
+
+    <ion-item>
+
+      <ion-grid>
+
+        <ion-card>
+          <ion-row id="registro-list">
+            <ion-col>Fecha</ion-col>
+            <ion-col>Nombre tecnico</ion-col>
+            <ion-col>Nombre cliente</ion-col>
+            <ion-col>Identificacion cliente</ion-col>
+            <ion-col>Direccion</ion-col>
+            <ion-col>Precio</ion-col>
+            <ion-col>Servicio</ion-col>
+            <ion-col>Especificaciones</ion-col>
+            <ion-col>Accion</ion-col>
+          </ion-row>
+        </ion-card>
+
+        <ion-card>
+          <div id="square">
+            <div id="row-section" *ngFor="let registro of registroList | filter:filterRegistro | reverse; let i = index">
+              <ion-row class="ion-align-items-center" id="registro" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+                <ion-col class="col-element-date">{{registro.fecha}}</ion-col>
+                <ion-col class="col-element">{{registro.nombreTecnico}}</ion-col>
+                <ion-col class="col-element">{{registro.nombreCliente}}</ion-col>
+                <ion-col class="col-element">{{registro.cedulaCliente}}</ion-col>
+                <ion-col class="col-element">
+                  <ion-icon name="location-outline"></ion-icon>
+                  {{registro.direccion}}
+                </ion-col>
+                <ion-col class="col-element">{{registro.precio}}</ion-col>
+                <ion-col class="col-element">{{registro.servicio}}</ion-col>
+                <ion-col class="col-element">{{registro.producto}}</ion-col>
+                <ion-col class="col-element">
+                  <ion-button (click)="registroService.populateForm(registro)">
+                    <ion-icon name="create-outline"></ion-icon>
+                  </ion-button>
+                  <ion-button *ngIf="isAdmin" (click)="onDelete(registro.$key)">
+                    <ion-icon name="trash-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </div>
+        </div>
+        </ion-card>
+        
+        
+      </ion-grid>
+    </ion-item>
+  </div>
+  

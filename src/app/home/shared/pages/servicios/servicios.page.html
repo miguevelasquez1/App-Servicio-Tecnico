@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        Servicios
+    </ion-title>
+    <img class="tuerca" src="../../../../../assets/icon/favicon.png" alt="" slot="end" width="70px">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<!-- <button (click)="lol()">Loggin</button> -->
+<div *ngIf="homePage.showPrincipal">
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/lavadora.png" width="24px">
+      <ion-label>Servicios Domesticos</ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/" (click)="homePage.onSubmitDomestico()">Ver</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Elige este servicio si necesitas alguna reparacion
+      domestica, un tecnico ira a domicilio para arreglar
+      tu problema.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/nevera.png" width="24px">
+      <ion-label>Servicios Comerciales</ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/" (click)="homePage.onSubmitComercial()">Ver</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Elige este servicio si necesitas alguna reparacion
+      comercial, un tecnico ira a domicilio para arreglar
+      tu problema.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/industrial.png" width="24px">
+      <ion-label>Servicios Industriales</ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/" (click)="homePage.onSubmitIndustrial()">Ver</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Elige este servicio si necesitas alguna reparacion
+      industrial, un tecnico ira a domicilio para arreglar
+      tu problema.
+    </ion-card-content>
+  </ion-card>
+  <!-- <ion-item>
+    <img src="../../../assets/images/lavadora.png" width="24px">
+    Servicios domésticos
+  </ion-item> -->
+</div>
+
+  <div *ngIf="homePage.showDomesticos">
+    <app-domesticos></app-domesticos>
+  </div>
+  <div *ngIf="homePage.showComerciales">
+    <app-comerciales></app-comerciales>
+  </div>
+  <div *ngIf="homePage.showIndustriales">
+    <app-industriales></app-industriales>
+  </div>
+
+</ion-content>

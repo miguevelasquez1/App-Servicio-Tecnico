@@ -1,0 +1,28 @@
+<ion-menu side="start" menuId="second" contentId="main-software">
+
+  <ion-header>
+    <ion-toolbar >
+      <ion-title>Configuracion {{isAdmin}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="/platform/">Rutas</ion-item>
+      <ion-item >Inventario</ion-item>
+      <ion-item routerLink="/platform/chat/">Chat</ion-item>
+      <div *ngIf="isAdmin">
+        <ion-item>Usuarios</ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer>
+    <ion-list>
+      <ion-item>
+        <ion-button routerLink="/login">Cerrar sesion</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-footer>
+
+</ion-menu>

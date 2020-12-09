@@ -1,0 +1,63 @@
+<ion-icon class="arrow-back" name="arrow-back-outline" (click)="homePage.onSubmitPrincipal()" slot="start"></ion-icon>
+  <ion-card>
+    <form [formGroup]="chatService.chatForm" (ngSubmit)="homePage.newChat()">
+
+      <ion-item>
+        <ion-button fill="outline" slot="end" href="https://api.whatsapp.com/send?phone=573054101102" target="blank">Solicitar Servicio</ion-button>
+        <img src="../assets/images/lavadora.png" width="24px">
+          <ion-input type="hidden" formControlName="userUid" [(ngModel)]="currentUser"></ion-input>
+          <ion-input type="hidden" formControlName="userName" [(ngModel)]="currentUserName"></ion-input>
+      </ion-item>
+
+      <ion-card-content>
+        Iniciar chat para servicio de lavadoras
+      </ion-card-content>
+    </form>
+
+  </ion-card>
+
+  <ion-card>
+    <form [formGroup]="chatService.chatForm" (ngSubmit)="homePage.newChat()">
+
+      <ion-item>
+        <ion-button fill="outline" slot="end" href="https://api.whatsapp.com/send?phone=573054101102" target="blank">Solicitar Servicio</ion-button>
+        <img src="../assets/images/lavadora.png" width="24px">
+          <ion-input type="hidden" formControlName="userUid" [(ngModel)]="currentUser"></ion-input>
+          <ion-input type="hidden" formControlName="userName" [(ngModel)]="currentUserName"></ion-input>
+      </ion-item>
+
+      <ion-card-content>
+        Iniciar chat para servicio de neveras
+      </ion-card-content>
+    </form>
+
+  </ion-card>
+
+  <ion-card>
+
+      <ion-item>
+        <ion-button fill="outline" slot="end" (click)="presentAlertPrompt()">Solicitar Servicio</ion-button>
+        <img src="../assets/images/lavadora.png" width="24px">
+      </ion-item>
+
+      <ion-card-content>
+        Iniciar chat para servicio de electrodomesticos
+      </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <form [formGroup]="chatService.chatForm" (ngSubmit)="homePage.newChat()">
+
+      <ion-item>
+        <ion-button fill="outline" slot="end" href="https://api.whatsapp.com/send?phone=573054101102" target="blank">Solicitar Servicio</ion-button>
+        <img src="../assets/images/lavadora.png" width="24px">
+          <ion-input type="hidden" formControlName="userUid" [(ngModel)]="currentUser"></ion-input>
+          <ion-input type="hidden" formControlName="userName" [(ngModel)]="currentUserName"></ion-input>
+      </ion-item>
+
+      <ion-card-content>
+        Iniciar chat para otro servicio
+      </ion-card-content>
+    </form>
+
+  </ion-card>
