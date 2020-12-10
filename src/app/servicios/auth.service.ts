@@ -14,7 +14,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AuthService {
 
-  public userData$;
+  public userData$: Observable<User>;
   authForm: FormGroup;
 
   constructor(
@@ -23,7 +23,7 @@ export class AuthService {
     private ngZone: NgZone,
     private firebaseAuth: AngularFireAuth,
     ) {
-      this.userData$ = firebaseAuth.authState;
+      this.userData$ = this.firebaseAuth.authState;
       this.buildForm();
   }
 
@@ -95,7 +95,7 @@ export class AuthService {
   //   });
   // }
 
-  isUserAdmin(userUid) {
+  isUser(userUid) {
     return this.angularFirestore.doc<User>(`users/${userUid}`).valueChanges();
   }
 

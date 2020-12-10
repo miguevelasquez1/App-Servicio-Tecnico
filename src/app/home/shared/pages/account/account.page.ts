@@ -33,13 +33,12 @@ export class AccountPage implements OnInit {
 
   getCurrentUser() {
     this.authService.isAuth2().subscribe(auth => {
+      // console.log(auth);
       this.name = auth.displayName;
       this.email = auth.email;
       this.phoneNumber = auth.phoneNumber;
       this.photoUrl = auth.photoURL;
     });
-
-    console.log(name);
   }
 
   onSubmitUpdate(user: User) {
@@ -52,13 +51,13 @@ export class AccountPage implements OnInit {
         }).then(() => {
           this.name = user.name;
         }).catch(error => {
-          console.log('error', error);
+          // console.log('error', error);
         });
       }
       this.angularFirestore.collection('users').doc(auth.uid).update({
         name: user.name
       });
-      console.log(auth.displayName);
+      // console.log(auth.displayName);
     });
 
     this.router.navigate(['/']);

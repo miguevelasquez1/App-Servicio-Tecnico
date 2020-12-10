@@ -43,16 +43,21 @@ export class RegisterPage implements OnInit {
   onSubmitRegister(user: User) {
     this.authService.register(this.authService.authForm.value).then((res) => {
       this.authService.isAuth2().subscribe(auth => {
-        if (auth){
-          auth.updateProfile({
-            displayName: user.name,
-            photoURL: 'https://firebasestorage.googleapis.com/v0/b/aes-capacitor.appspot.com/o/user.png?alt=media&token=3434ac34-6835-43a9-883f-0900c4ff857d'
-          }).then(() => {
-            console.log(auth);
-          }).catch(error => {
-            console.log('error', error);
-          });
-        }
+        this.authService.isUser(auth.uid).subscribe(data => {
+          console.log(data);
+          if (auth.email == data.email){
+            auth.updateProfile({
+              displayName: data.name,
+              photoURL: 'https://firebasestorage.googleapis.com/v0/b/aes-capacitor.appspot.com/o/user.png?alt=media&token=3434ac34-6835-43a9-883f-0900c4ff857d'
+            }).then(() => {
+              // console.log(auth);
+            }).catch(error => {
+              // console.log('error', error);
+            });
+          }
+        })
+        
+        // console.log(auth);
       });
       this.router.navigate(['/home']);
     })

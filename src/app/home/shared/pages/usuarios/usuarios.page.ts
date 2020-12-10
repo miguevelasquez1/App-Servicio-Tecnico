@@ -35,10 +35,6 @@ export class UsuariosPage implements OnInit {
     });
   }
 
-  prueba() {
-    console.log(this.authService.authForm.value);
-  }
-
   isTecnico(user) {
     this.angularFirestore.collection('users').doc(user.id).update({
       tecnico: user.tecnico

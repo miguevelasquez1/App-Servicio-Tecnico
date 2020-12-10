@@ -2,10 +2,10 @@ export class User {
     uid?: string;
     name?: string;
     email?: string;
-    phoneNumber?: number;
+    phoneNumber?: string;
     password?: string;
     photoUrl?: string;
     admin?: boolean;
     tecnico?: boolean;
-    customer: boolean;
+    customer?: boolean;
 }
