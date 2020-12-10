@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import { AuthService } from 'src/servicios/auth.service';
+import { AuthService } from '../servicios/auth.service';
 // import { ChatService } from 'src/servicios/chat.service';
 import { MenuController } from '@ionic/angular';
 // import { Chat } from '../models/chat';
@@ -24,14 +24,14 @@ export class HomePage {
   constructor(
     // private chatService: ChatService,
     private menu: MenuController,
-    // private authService: AuthService
+    private authService: AuthService
   ) { }
 
 
-  // onSubmitSignOut() {
-  //   this.authService.signOut()
-  //   this.menu.close('first');
-  // }
+  onSubmitSignOut() {
+    this.authService.signOut()
+    this.menu.close('first');
+  }
 
   onSubmit() {
     this.menu.close('first');
