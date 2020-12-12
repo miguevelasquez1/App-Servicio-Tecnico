@@ -45,7 +45,7 @@ export class MisrutasListPage implements OnInit {
     this.authService.isAuth2().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
+        this.authService.isUser(this.userUid).subscribe(userRole => {
           this.isAdmin = Object.assign({}, userRole).admin;
         });
       }
@@ -62,7 +62,7 @@ export class MisrutasListPage implements OnInit {
 
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserAdmin(this.userUid).subscribe(user => {
+        this.authService.isUser(this.userUid).subscribe(user => {
           this.userUid = user.uid;
         });
       }

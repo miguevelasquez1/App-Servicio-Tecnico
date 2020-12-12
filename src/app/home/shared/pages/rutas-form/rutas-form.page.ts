@@ -58,7 +58,7 @@ export class RutasFormPage implements OnInit {
 
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserAdmin(this.userUid).subscribe(user => {
+        this.authService.isUser(this.userUid).subscribe(user => {
           this.userUid = user.uid;
           this.userName = user.name;
         });

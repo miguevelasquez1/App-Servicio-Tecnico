@@ -47,7 +47,7 @@ export class InventarioPage implements OnInit {
     this.authService.isAuth2().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
+        this.authService.isUser(this.userUid).subscribe(userRole => {
           this.isAdmin = Object.assign({}, userRole).admin;
         });
       }

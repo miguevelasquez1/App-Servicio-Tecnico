@@ -87,7 +87,7 @@ export class MessageService {
     this.authService.isAuth2().subscribe(auth => {
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserAdmin(this.userUid).subscribe(user => {
+        this.authService.isUser(this.userUid).subscribe(user => {
           this.currentUser = Object.assign({}, user).name;
         });
       }

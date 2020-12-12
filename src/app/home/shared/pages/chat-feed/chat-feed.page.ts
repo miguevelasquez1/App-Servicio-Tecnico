@@ -72,7 +72,7 @@ export class ChatFeedPage implements OnInit {
 
       if (auth) {
         this.userUid = auth.uid;
-        this.authService.isUserAdmin(this.userUid).subscribe(user => {
+        this.authService.isUser(this.userUid).subscribe(user => {
           this.currentUser = user.uid;
           this.currentUserName = user.name;
         });
