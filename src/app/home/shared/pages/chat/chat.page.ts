@@ -41,7 +41,6 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.chatKey);
     this.getCurrentUser();
 
     this.messageService.getMessage()
@@ -76,16 +75,13 @@ export class ChatPage implements OnInit {
 
 
   getMessage2(chat: string) {
-    console.log(this.chatKey);
     // this.chatFeedPage.startChat(chat);
     // console.log(this.chatFeedPage.listChat);
     return this.angularFirestore.collection('chats').doc(chat).collection('messages').snapshotChanges();
   }
 
   startChat(chat: Chat) {
-    console.log(chat.id);
     this.chatKey = chat.id;
-    console.log('renombre', this.chatKey);
   }
 
   onSubmit() {

@@ -19,6 +19,8 @@ export class DomesticosComponent implements OnInit {
   currentUser;
   currentUserName;
 
+  token: string = '';
+
   constructor(
     private authService: AuthService,
     public chatService: ChatService,
@@ -37,7 +39,10 @@ export class DomesticosComponent implements OnInit {
         };
       });
     });
+
   }
+
+  
 
   getCurrentUser() {
     this.authService.isAuth2().subscribe(auth => {

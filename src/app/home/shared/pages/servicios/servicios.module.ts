@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { IonicModule } from '@ionic/angular';
 
@@ -16,7 +18,8 @@ import { HomePage } from '../../../home.page';
 import { HomePageModule } from '../../../home.module';
 import { ChatFeedPage } from '../chat-feed/chat-feed.page';
 import { ChatFeedPageModule } from '../chat-feed/chat-feed.module';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { FCM } from '@capacitor-community/fcm';
 
 @NgModule({
   imports: [
@@ -31,6 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ComercialesComponent,
     DomesticosComponent,
     ServiciosPage
+  ],
+  providers: [
+    FCM
   ]
 })
 export class ServiciosPageModule {}

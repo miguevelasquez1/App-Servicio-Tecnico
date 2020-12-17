@@ -65,7 +65,6 @@ export class MessageService {
         mensaje: message.mensaje,
         createdAt: message.createdAt
       });
-      console.log(this.messageList);
     });
   }
 
@@ -79,7 +78,6 @@ export class MessageService {
 
   getMessage2(chat: string) {
     // this.chatFeedPage.startChat(chat);
-    console.log(this.chatFeedPage.listChat);
     return this.angularFirestore.collection('chats').doc(chat).collection('messages').snapshotChanges();
   }
 

@@ -61,7 +61,6 @@ export class RegistroService {
       direccion: registro.direccion,
       precio: registro.precio,
     });
-    console.log(this.registroList);
   }
 
   updateRegistro(registro: Registro) {

@@ -44,7 +44,6 @@ export class RegisterPage implements OnInit {
     this.authService.register(this.authService.authForm.value).then((res) => {
       this.authService.isAuth2().subscribe(auth => {
         this.authService.isUser(auth.uid).subscribe(data => {
-          console.log(data);
           if (auth.email == data.email){
             auth.updateProfile({
               displayName: data.name,

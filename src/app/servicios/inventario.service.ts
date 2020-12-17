@@ -90,7 +90,6 @@ export class InventarioService {
     populateForm(producto) {
       this.inventarioForm.patchValue(producto);
       this.imageList = producto.imagen;
-      console.log(this.imagenField.controls);
       return this.formBuilder.group({
         urlImage: [producto.imagen, []]
       });

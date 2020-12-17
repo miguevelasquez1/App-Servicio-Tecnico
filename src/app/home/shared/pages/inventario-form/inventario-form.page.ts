@@ -55,7 +55,6 @@ export class InventarioFormPage implements OnInit {
       this.imageList = prueba.imagen;
     }
 
-    console.log(this.imageList);
 
   }
 
@@ -79,7 +78,6 @@ export class InventarioFormPage implements OnInit {
       quality: 100
     });
 
-    console.log(capturedPhoto);
   }
 
   onUpload(e) {
@@ -95,7 +93,6 @@ export class InventarioFormPage implements OnInit {
           ref.getDownloadURL().subscribe(url => {
             this.imageList.push(url.toString());
             // this.inventarioService.imagenField.controls[i] = url.toString();
-            console.log('sapo', this.inventarioService.imagenField.controls );
           });
         })
       ).subscribe();
@@ -110,8 +107,6 @@ export class InventarioFormPage implements OnInit {
       } else {
         this.inventarioService.updateInventario(this.inventarioService.inventarioForm.value);
       }
-      console.log(this.inventarioService.imagenField.controls);
-      console.log(this.inventarioService.inventarioForm.value);
       this.submitted = false;
       this.inventarioService.inventarioForm.reset();
       this.router.navigate(['/inventario']);
@@ -126,9 +121,5 @@ export class InventarioFormPage implements OnInit {
     }
     this.imageList = [];
     this.inventarioService.removeAllImagenField();
-  }
-
-  intento(xd) {
-    console.log(xd);
   }
 }

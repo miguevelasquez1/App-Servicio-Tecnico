@@ -20,9 +20,5 @@ export class ServiciosPage implements OnInit {
     public userUid: string = null;
 
   ngOnInit() { }
-  lol() {
-    this.authService.isAuth2().subscribe(user => console.log(user));
-    console.log(this.homePage.showPrincipal);
-  }
 }
 

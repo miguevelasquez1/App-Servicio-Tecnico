@@ -22,7 +22,16 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home/servicios',
         pathMatch: 'full'
-      }
+      },
+      {
+        path: 'chat-feed',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./shared/pages/chat-feed/chat-feed.module').then(m => m.ChatFeedPageModule)
+          }
+        ]
+      },
     ]
   }
 ];

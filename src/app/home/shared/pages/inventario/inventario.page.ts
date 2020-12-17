@@ -58,8 +58,4 @@ export class InventarioPage implements OnInit {
     this.inventarioService.inventarioForm.reset();
     this.inventarioService.selectedInventario = new Inventario();
   }
-  
-  prueba(xd) {
-    console.log(xd);
-  }
 }
