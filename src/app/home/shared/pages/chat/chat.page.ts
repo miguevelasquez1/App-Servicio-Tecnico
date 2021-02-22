@@ -41,7 +41,7 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
 
-    console.log('xd');
+    console.log('xd 2');
 
     this.getCurrentUser();
 
