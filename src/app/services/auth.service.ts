@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable, NgZone, EventEmitter } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { User } from 'src/app/models/user';
@@ -14,6 +14,8 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AuthService {
 
+  private _emitNumber: EventEmitter<object>;
+
   public userData$: Observable<User>;
   authForm: FormGroup;
 
@@ -23,6 +25,7 @@ export class AuthService {
     private ngZone: NgZone,
     private firebaseAuth: AngularFireAuth,
     ) {
+      this._emitNumber = new EventEmitter<object>();
       this.userData$ = this.firebaseAuth.authState;
       this.buildForm();
   }
@@ -98,5 +101,16 @@ export class AuthService {
   isUser(userUid) {
     return this.angularFirestore.doc<User>(`users/${userUid}`).valueChanges();
   }
+
+  public get emitNumber(): EventEmitter<object> {
+    return this._emitNumber;
+  }
+
+  /**
+   * @param emitNumber
+   */
+  public set emitNumber(emitNumber: EventEmitter<object>) {
+    this._emitNumber = emitNumber;
+}
 
 }

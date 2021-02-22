@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Inventario } from 'src/app/models/inventario';
-import { InventarioService } from '../../servicios/inventario.service';
+import { InventarioService } from '../../services/inventario.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 

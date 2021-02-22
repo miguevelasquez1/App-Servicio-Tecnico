@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { AuthService } from '../../../../servicios/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 import { HomePage } from 'src/app/home/home.page';
 import { ServiciosPage } from '../../pages/servicios/servicios.page';
 

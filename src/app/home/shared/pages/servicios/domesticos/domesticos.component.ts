@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { HomePage } from 'src/app/home/home.page';
 
-import { AuthService } from '../../../../../servicios/auth.service';
-import { ChatService } from '../../../../../servicios/chat.service';
+import { AuthService } from '../../../../../services/auth.service';
+import { ChatService } from '../../../../../services/chat.service';
 import { Chat } from 'src/app/models/chat';
+
+import { Subject } from 'Rxjs';
 
 @Component({
   selector: 'app-domesticos',
@@ -20,6 +22,15 @@ export class DomesticosComponent implements OnInit {
   currentUserName;
 
   token: string = '';
+  pruebaa = {
+    hola: false
+  };
+
+  pruebaaa;
+  mensaje;
+  mensaje2;
+  mensajeSubject: Subject<string> = new Subject<string>();
+  mensajeSubjectObservable = this.mensajeSubject.asObservable();
 
   constructor(
     private authService: AuthService,
@@ -27,7 +38,7 @@ export class DomesticosComponent implements OnInit {
     public homePage: HomePage,
     public alertController: AlertController
     ) { }
-
+    
   ngOnInit() {
     this.getCurrentUser();
 
@@ -40,9 +51,12 @@ export class DomesticosComponent implements OnInit {
       });
     });
 
-  }
+    this.mensajeSubjectObservable.subscribe(mensaje2 => {
+      this.mensaje2 = mensaje2;
+      console.log(this.mensaje2, 'mensaje2');
+    });
 
-  
+  }
 
   getCurrentUser() {
     this.authService.isAuth2().subscribe(auth => {
@@ -100,6 +114,14 @@ export class DomesticosComponent implements OnInit {
     });
 
     await alert.present();
+  }
+
+  public prueba(mensaje) {
+    mensaje = this.mensaje;
+    this.mensajeSubject.next(mensaje);
+    setTimeout(() => {
+      console.log(this.mensaje, mensaje, 'pruebaaaa');
+    }, 100);
   }
 
 }

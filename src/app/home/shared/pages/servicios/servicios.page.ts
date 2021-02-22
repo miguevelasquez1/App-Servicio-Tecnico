@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { LayoutComponent } from 'src/app/home/shared/components/layout/layout.component';
+import { OnInit, Component, ElementRef, QueryList, ViewChildren,  } from '@angular/core';
+import { IonCard } from '@ionic/angular';
+
+
 import { HomePage } from '../../../home.page';
-import { AuthService } from '../../../../servicios/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-servicios',
@@ -13,12 +14,9 @@ export class ServiciosPage implements OnInit {
 
   constructor(
     public homePage: HomePage,
-    public authService: AuthService
-    ) { }
+    public authService: AuthService,
+  ) {}
 
-    public isAdmin: any = null;
-    public userUid: string = null;
-
-  ngOnInit() { }
+  ngOnInit() {}
 }
 

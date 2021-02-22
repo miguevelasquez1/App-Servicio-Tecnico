@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button menu="first"></ion-menu-button>
@@ -8,12 +8,12 @@
     </ion-title>
     <img class="tuerca" src="../../../../../assets/icon/favicon.png" alt="" slot="end" width="70px">
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<!-- <ion-content> -->
 
 <!-- <button (click)="lol()">Loggin</button> -->
-<div *ngIf="homePage.showPrincipal">
+<!-- <div *ngIf="homePage.showPrincipal">
   <ion-card>
     <ion-item>
       <img src="../../../assets/images/lavadora.png" width="24px">
@@ -54,12 +54,12 @@
       industrial, un tecnico ira a domicilio para arreglar
       tu problema.
     </ion-card-content>
-  </ion-card>
-  <!-- <ion-item>
+  </ion-card> -->
+<!-- <ion-item>
     <img src="../../../assets/images/lavadora.png" width="24px">
     Servicios domésticos
   </ion-item> -->
-</div>
+<!-- </div>
 
   <div *ngIf="homePage.showDomesticos">
     <app-domesticos></app-domesticos>
@@ -71,4 +71,37 @@
     <app-industriales></app-industriales>
   </div>
 
+</ion-content> -->
+
+<!-- <div class="search-box">
+    <ion-input class="search" type="text" name="filterSearch" placeholder="Search..." [(ngModel)]="filterSearch"></ion-input>
+    <ion-icon class="search-icon" name="search-outline"></ion-icon>
+  </div> -->
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="8">
+        <ion-searchbar debounce="100" [(ngModel)]="filterItems"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="col-padding" size="8">
+        <ion-list [hidden]="items.length == 0">
+            <ion-item *ngFor="let item of items | filter:filterItems" tappable>
+              <ion-grid>
+                <ion-row>
+                  <ion-col> {{ item.service }} </ion-col>
+                  <ion-col class="ion-text-end">
+                    <ion-icon class="right" name="chevron-forward-outline"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <app-card-service></app-card-service>
 </ion-content>

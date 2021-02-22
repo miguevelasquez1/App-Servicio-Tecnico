@@ -8,17 +8,20 @@ import { RutasListPageRoutingModule } from './rutas-list-routing.module';
 
 import { RutasListPage } from './rutas-list.page';
 
-import { FilterPipe } from '../../../../platform/shared/pipes/filter.pipe';
 import { ReversePipe } from '../../../../platform/shared/pipes/reverse.pipe';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
+    Ng2SearchPipeModule,
+    FontAwesomeModule,
     CommonModule,
     FormsModule,
     IonicModule,
     RutasListPageRoutingModule
   ],
-  declarations: [ReversePipe, FilterPipe, RutasListPage]
+  declarations: [ReversePipe, RutasListPage]
 })
 export class RutasListPageModule {}

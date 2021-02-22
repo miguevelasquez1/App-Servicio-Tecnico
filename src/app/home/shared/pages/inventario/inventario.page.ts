@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroService } from '../../../../servicios/registro.service';
-import { AuthService } from '../../../../servicios/auth.service';
-import { InventarioService } from '../../../../servicios/inventario.service';
+import { RegistroService } from '../../../../services/registro.service';
+import { AuthService } from '../../../../services/auth.service';
+import { InventarioService } from '../../../../services/inventario.service';
 import { Inventario } from 'src/app/models/inventario';
 
 @Component({

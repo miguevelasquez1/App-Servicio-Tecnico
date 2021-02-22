@@ -9,7 +9,7 @@ import { ChatFeedPageRoutingModule } from './chat-feed-routing.module';
 import { ChatFeedPage } from './chat-feed.page';
 import { DomesticosComponent } from '../servicios/domesticos/domesticos.component';
 import { HomePage } from 'src/app/home/home.page';
-import { MessageService } from '../../../../servicios/message.service';
+import { MessageService } from '../../../../services/message.service';
 import { ChatPage } from '../chat/chat.page';
 
 @NgModule({

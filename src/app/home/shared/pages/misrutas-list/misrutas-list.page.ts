@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroService } from '../../../../servicios/registro.service';
-import { AuthService } from '../../../../servicios/auth.service';
+import { RegistroService } from '../../../../services/registro.service';
+import { AuthService } from '../../../../services/auth.service';
 import { Registro } from 'src/app/models/registro';
+
+import * as FontAwesome from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-misrutas-list',
@@ -19,6 +21,7 @@ export class MisrutasListPage implements OnInit {
     public registroService: RegistroService
   ) { }
 
+  fontAwesome = FontAwesome;
   filterRegistro = '';
 
   ngOnInit() {

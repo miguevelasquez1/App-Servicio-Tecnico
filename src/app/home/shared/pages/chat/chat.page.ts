@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnInit} from '@angular/core';
 
 import { IonContent } from '@ionic/angular';
-import { AuthService } from '../../../../servicios/auth.service';
-import { ChatService } from '../../../../servicios/chat.service';
-import { MessageService } from '../../../../servicios/message.service';
+import { AuthService } from '../../../../services/auth.service';
+import { ChatService } from '../../../../services/chat.service';
+import { MessageService } from '../../../../services/message.service';
 import { Message } from 'src/app/models/message';
 import { HomePage } from 'src/app/home/home.page';
 import { ChatFeedPage } from '../chat-feed/chat-feed.page';

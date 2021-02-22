@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { RegistroService } from '../../../../servicios/registro.service';
+import { RegistroService } from '../../../../services/registro.service';
 import { Router } from '@angular/router';
-import { InventarioService } from '../../../../servicios/inventario.service';
+import { InventarioService } from '../../../../services/inventario.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Inventario } from 'src/app/models/inventario';
 import { finalize } from 'rxjs/operators';
@@ -19,7 +19,7 @@ const isAvailable = Capacitor.isPluginAvailable('Camera');
   styleUrls: ['./inventario-form.page.scss'],
 })
 export class InventarioFormPage implements OnInit {
-  inventarioList = [];
+  inventarioList: Array<object> = [];
   imageField = new FormControl('');
 
   constructor(
@@ -31,9 +31,9 @@ export class InventarioFormPage implements OnInit {
     submitted: boolean;
     formControls = this.inventarioService.inventarioForm.controls;
 
-    uploadPercent = new Observable<number>();
+    uploadPercent = new Observable<number | undefined>();
     urlImage = new Observable<string>();
-    imageList = [];
+    imageList: Array<string> = [];
     buttonCount = 0;
     limitCount = 3;
 
@@ -58,8 +58,16 @@ export class InventarioFormPage implements OnInit {
 
   }
 
-  onClick() {
+  public addField(): void {
     this.buttonCount++;
+    console.log(this.buttonCount);
+    
+  }
+
+  public removeField(): void {
+    this.buttonCount--;
+    console.log(this.buttonCount);
+    
   }
 
   takePicture() {

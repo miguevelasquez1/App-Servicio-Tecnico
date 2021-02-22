@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroService } from '../../../../servicios/registro.service';
+import { RegistroService } from '../../../../services/registro.service';
 import { Registro } from 'src/app/models/registro';
 import { Router } from '@angular/router';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../../servicios/auth.service';
+import { AuthService } from '../../../../services/auth.service';
 import { User } from 'src/app/models/user';
 import { FormGroup } from '@angular/forms';
-import { UsersService } from '../../../../servicios/users.service';
+import { UsersService } from '../../../../services/users.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({

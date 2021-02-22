@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { RegistroService } from '../../../../servicios/registro.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
+
+import { RegistroService } from '../../../../services/registro.service';
+import { AuthService } from '../../../../services/auth.service';
 import { Registro } from 'src/app/models/registro';
-import { AuthService } from '../../../../servicios/auth.service';
 
 @Component({
   selector: 'app-rutas-form',
@@ -11,6 +15,8 @@ import { AuthService } from '../../../../servicios/auth.service';
   styleUrls: ['./rutas-form.page.scss'],
 })
 export class RutasFormPage implements OnInit {
+
+  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
 
   Registro = [];
   userUid;
@@ -37,6 +43,11 @@ export class RutasFormPage implements OnInit {
           };
         });
       });
+  }
+
+  public handleAddressChange(address: Address) {
+    console.log(address);
+    
   }
 
   onSubmit() {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomesticosComponent } from '../servicios/domesticos/domesticos.component';
 import { HomePage } from 'src/app/home/home.page';
-import { AuthService } from '../../../../servicios/auth.service';
-import { ChatService } from '../../../../servicios/chat.service';
+import { AuthService } from '../../../../services/auth.service';
+import { ChatService } from '../../../../services/chat.service';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Chat } from 'src/app/models/chat';
 import { map } from 'rxjs/operators';

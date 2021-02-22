@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../servicios/auth.service';
-// import { ChatService } from 'src/servicios/chat.service';
+import { AuthService } from '../services/auth.service';
+// import { ChatService } from 'src/services/chat.service';
 import { MenuController } from '@ionic/angular';
 // import { Chat } from '../models/chat';
 // import { ChatFeedPage } from './shared/pages/chat-feed/chat-feed.page';

@@ -29,7 +29,7 @@
                   </ion-input>
                </ion-item>
 
-               <ion-button [disabled]="buttonCount >= limitCount" (mouseup)="onClick()" (click)="inventarioService.addImagenField()">Añadir imagen</ion-button>
+               <ion-button [disabled]="buttonCount >= limitCount" (mouseup)="addField()" (click)="inventarioService.addImagenField()">Añadir imagen</ion-button>
                <ion-fab>
                   <ion-fab-button>
                      <ion-icon name="images-outline"></ion-icon>
@@ -59,7 +59,7 @@
                            accept=".png, .jpg"
                            (change)="onUpload($event)">
                         </ion-input>
-                        <ion-button (click)="inventarioService.removeImagenField(i)">
+                        <ion-button (click)="inventarioService.removeImagenField(i)" (mouseup)="removeField()">
                            <ion-icon name="trash-outline"></ion-icon>
                         </ion-button>
                      </ion-item>

@@ -8,10 +8,10 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 
 import { ChatPage } from './chat.page';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ChatService } from '../../../../servicios/chat.service';
+import { ChatService } from '../../../../services/chat.service';
 import { ChatFeedPage } from '../chat-feed/chat-feed.page';
 import { HomePage } from 'src/app/home/home.page';
-import { MessageService } from '../../../../servicios/message.service';
+import { MessageService } from '../../../../services/message.service';
 import { DomesticosComponent } from '../servicios/domesticos/domesticos.component';
 
 
