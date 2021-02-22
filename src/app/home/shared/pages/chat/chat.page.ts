@@ -41,6 +41,8 @@ export class ChatPage implements OnInit {
 
   ngOnInit() {
 
+    console.log('xd');
+
     this.getCurrentUser();
 
     this.messageService.getMessage()
