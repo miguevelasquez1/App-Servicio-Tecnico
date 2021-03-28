@@ -15,7 +15,6 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { ReversePipe } from './shared/pipes/reverse.pipe';
-import { ServiciosPage } from '../home/shared/pages/servicios/servicios.page';
 import { LayoutComponent } from './shared/components/layout/layout.component';
 
 

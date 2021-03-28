@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { HomePage } from 'src/app/home/home.page';
 
-import { AuthService } from '../../../../../services/auth.service';
-import { ChatService } from '../../../../../services/chat.service';
+import { AuthService } from '../../../services/auth.service';
+import { ChatService } from '../../../services/chat.service';
 import { Chat } from 'src/app/models/chat';
 
 import { Subject } from 'Rxjs';
@@ -53,7 +53,6 @@ export class DomesticosComponent implements OnInit {
 
     this.mensajeSubjectObservable.subscribe(mensaje2 => {
       this.mensaje2 = mensaje2;
-      console.log(this.mensaje2, 'mensaje2');
     });
 
   }
@@ -105,10 +104,7 @@ export class DomesticosComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary'
         }, {
-          text: 'Ok',
-          handler: xd => {
-            console.log(xd);
-          }
+          text: 'Ok'
         }
       ]
     });
@@ -119,9 +115,6 @@ export class DomesticosComponent implements OnInit {
   public prueba(mensaje) {
     mensaje = this.mensaje;
     this.mensajeSubject.next(mensaje);
-    setTimeout(() => {
-      console.log(this.mensaje, mensaje, 'pruebaaaa');
-    }, 100);
   }
 
 }

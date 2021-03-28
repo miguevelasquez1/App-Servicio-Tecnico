@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
 
   onSubmitLogin() {
     this.authService
-      .login(this.usersService.userForm.value)
+      .login(this.authService.authForm.value)
       .then((res) => {
         this.router.navigate(['/home']);
       })

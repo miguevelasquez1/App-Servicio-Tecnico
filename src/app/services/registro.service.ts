@@ -33,14 +33,6 @@ export class RegistroService {
       direccion: ['', [Validators.required]],
       precio: ['', [Validators.required]]
   });
-
-    // form.valueChanges
-    // // .pipe(
-    // //   debounceTime(500)
-    // // )
-    // .subscribe(value => {
-    //   console.log(value);
-    // });
   }
 
   getRegistros() {

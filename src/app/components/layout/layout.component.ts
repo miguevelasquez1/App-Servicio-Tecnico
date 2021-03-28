@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { AuthService } from '../../../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { HomePage } from 'src/app/home/home.page';
-import { ServiciosPage } from '../../pages/servicios/servicios.page';
 
 @Component({
   selector: 'app-layout',
@@ -10,6 +9,8 @@ import { ServiciosPage } from '../../pages/servicios/servicios.page';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+
+  darkMode = true;
 
   constructor(
     public homePage: HomePage,
@@ -35,6 +36,11 @@ export class LayoutComponent implements OnInit {
         });
       }
     });
+  }
+
+  cambio() {
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle( 'dark' );
   }
 
 

@@ -3,6 +3,8 @@ import { RegistroService } from '../../../../services/registro.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Registro } from 'src/app/models/registro';
 
+import { ItemReorderEventDetail } from '@ionic/core';
+
 import * as FontAwesome from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -70,6 +72,10 @@ export class MisrutasListPage implements OnInit {
         });
       }
     });
+  }
+
+  doReorder(ev: CustomEvent<ItemReorderEventDetail>) {
+    this.registroList = ev.detail.complete(this.registroList);
   }
 
 }

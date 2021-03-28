@@ -1,7 +1,6 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/" slot="start"></ion-icon>
-    <!-- <img class="arrow-back" src="../../../../../assets//images/arrow-back-up.png" width="32px" routerLink="/" slot="start"> -->
     <ion-title>Mi inventario</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,16 +8,14 @@
 <ion-content>
   <div id="div-principal">
 
-    <!-- <ion-input class="search" type="text" name="filterRegistro" placeholder="Search..." [(ngModel)]="filterRegistro"></ion-input> -->
-  
-      <ion-item>
+      <ion-item lines="none">
   
         <ion-grid>
   
           <ion-card>
             <ion-row id="registro-list">
+              <ion-col>Imagen</ion-col>
               <ion-col>Marca</ion-col>
-              <ion-col>Archivos </ion-col>
               <ion-col>Cantidad</ion-col>
               <ion-col>Accion</ion-col>
             </ion-row>
@@ -28,26 +25,23 @@
             <div id="square">
               <div id="row-section" *ngFor="let producto of inventarioList;">
                 <ion-row class="ion-align-items-center" id="registro">
-                  <ion-col class="col-element">{{producto.marca}}</ion-col>
-                  <!-- <ion-col>
-                    <ion-button (click)="prueba(producto.imagen)">
-                      <ion-icon name="create-outline"></ion-icon>
-                    </ion-button>
-                  </ion-col> -->
-                  <ion-col *ngIf="producto.imagen == undefined">
+                  <ion-col *ngIf="producto.imagen == undefined; else imagen" size="3">
                     <p>No hay imágenes aún</p>
                   </ion-col>
-                  <ion-col class="col-element col-image" *ngFor="let image of producto.imagen">
-                    <ion-grid>
-                      <ion-row>
-                        <ion-col>
-                          <img [src]="image.urlImage" alt="">
-                        </ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-col>
-                  <ion-col class="col-element-cantidad">{{producto.cantidad}}</ion-col>
-                  <ion-col class="col-element">
+                  <ng-template #imagen>
+                    <ion-col size="3" class="col-element col-images">
+                      <ion-grid>
+                        <ion-row>
+                          <ion-col class="col-image" size="5" *ngFor="let image of producto.imagen">
+                            <img [src]="image.urlImage" alt="">
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-col>
+                  </ng-template>
+                  <ion-col size="3" class="col-element">{{producto.marca}}</ion-col>
+                  <ion-col size="3" class="col-element-cantidad">{{producto.cantidad}}</ion-col>
+                  <ion-col size="3" class="col-element">
                     <ion-button (click)="inventarioService.populateForm(producto)" routerLink="/inventario-form">
                       <ion-icon name="create-outline"></ion-icon>
                     </ion-button>

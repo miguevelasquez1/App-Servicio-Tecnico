@@ -1,15 +1,36 @@
-<app-layout></app-layout>
+<!-- <app-layout></app-layout> -->
 
 <ion-content id="main">
-  <ion-tabs>
-      <ion-tab-bar slot="bottom">
-    
-        <ion-tab-button tab="servicios">
-          <ion-icon name="build"></ion-icon>
-          Inicio
+    <ion-tabs>
+
+        <ion-tab-bar slot="bottom" [translucent]="true">
+        <ion-tab-button tab="home" layout="icon-top">
+            <ion-icon name="search"></ion-icon>
+            <ion-label>Explore</ion-label>
         </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
+    
+        <ion-tab-button tab="rutas" layout="icon-top">
+            <ion-icon name="albums"></ion-icon>
+            <ion-label>Rutas</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="" layout="icon-top" (click)="servicesService.insertServicioCopy()">
+            <ion-icon name="home"></ion-icon>
+            <ion-label>Inicio</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="charts" layout="icon-top">
+            <ion-icon name="pie-chart"></ion-icon>
+            <ion-label>Estadísticas</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="account" layout="icon-top" class="tab-trash">
+            <ion-icon name="person-circle"></ion-icon>
+            <ion-label>Perfil</ion-label>
+        </ion-tab-button>
+        </ion-tab-bar>
+  
+  </ion-tabs>
 </ion-content>
 
 

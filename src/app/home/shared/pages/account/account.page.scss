@@ -16,9 +16,12 @@
     font-family: Poppins-Medium;
 }
 
+ion-toolbar {
+    --background: var(--ion-background-color);
+}
+
 ion-content {
     text-align: center;
-    // --background: #f6f6f6;
 }
 
 .arrow-back {
@@ -28,7 +31,7 @@ ion-content {
 
 .photo {
     margin: 50px 50px 0 50px;
-    border-radius: 200px;
+    border-radius: 50%;
     border: 3px solid #ffffff;
 }
 

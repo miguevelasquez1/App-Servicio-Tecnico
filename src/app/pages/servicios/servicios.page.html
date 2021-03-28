@@ -1,0 +1,156 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        Servicios
+    </ion-title>
+    <img class="tuerca" src="../../../../../assets/icon/favicon.png" alt="" slot="end" width="70px">
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-content> -->
+
+<!-- <button (click)="lol()">Loggin</button> -->
+<!-- <div *ngIf="homePage.showPrincipal">
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/lavadora.png" width="24px">
+      <ion-label>Servicios Domesticos</ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/" (click)="homePage.onSubmitDomestico()">Ver</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Elige este servicio si necesitas alguna reparacion
+      domestica, un tecnico ira a domicilio para arreglar
+      tu problema.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/nevera.png" width="24px">
+      <ion-label>Servicios Comerciales</ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/" (click)="homePage.onSubmitComercial()">Ver</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Elige este servicio si necesitas alguna reparacion
+      comercial, un tecnico ira a domicilio para arreglar
+      tu problema.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <img src="../../../assets/images/industrial.png" width="24px">
+      <ion-label>Servicios Industriales</ion-label>
+      <ion-button fill="outline" slot="end" routerLink="/" (click)="homePage.onSubmitIndustrial()">Ver</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      Elige este servicio si necesitas alguna reparacion
+      industrial, un tecnico ira a domicilio para arreglar
+      tu problema.
+    </ion-card-content>
+  </ion-card> -->
+<!-- <ion-item>
+    <img src="../../../assets/images/lavadora.png" width="24px">
+    Servicios domésticos
+  </ion-item> -->
+<!-- </div>
+
+  <div *ngIf="homePage.showDomesticos">
+    <app-domesticos></app-domesticos>
+  </div>
+  <div *ngIf="homePage.showComerciales">
+    <app-comerciales></app-comerciales>
+  </div>
+  <div *ngIf="homePage.showIndustriales">
+    <app-industriales></app-industriales>
+  </div>
+
+</ion-content> -->
+
+<!-- <div class="search-box">
+    <ion-input class="search" type="text" name="filterSearch" placeholder="Search..." [(ngModel)]="filterSearch"></ion-input>
+    <ion-icon class="search-icon" name="search-outline"></ion-icon>
+  </div> -->
+
+<ion-header class="ion-no-border">
+  <ion-toolbar class="new-background-color">
+    <ion-grid style="height: 100%">
+      <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+        <ion-col size="7">
+          <ion-searchbar debounce="100" [(ngModel)]="filterItems"></ion-searchbar>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button *ngIf="servicesService.spinnerActive; else saveButton">
+            <ion-spinner name="circles"></ion-spinner>
+          </ion-button>
+          <ng-template #saveButton>
+            <ion-button (click)="servicesService.onSubmit()" [disabled]="servicesService.saveDisabled">
+              Saved
+            </ion-button>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-card-service></app-card-service>
+  <!-- <ion-tabs>
+
+    <ion-tab-bar slot="bottom" [translucent]="true">
+      <ion-tab-button tab="home" layout="icon-top">
+        <ion-icon name="search"></ion-icon>
+        <ion-label>Explore</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="wishlists" layout="icon-top">
+        <ion-icon name="gift"></ion-icon>
+        <ion-label>Wishlists</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button selected="true" layout="icon-top" (click)="servicesService.insertServicioCopy()">
+        <ion-icon name="add"></ion-icon>
+        <ion-label>Crear</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="groups" layout="icon-top">
+        <ion-icon name="people-circle"></ion-icon>
+        <ion-label>Groups</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button layout="icon-top" class="tab-trash">
+        <ion-icon name="trash-bin-outline"></ion-icon>
+        <ion-label>Eliminar</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  
+  </ion-tabs> -->
+</ion-content>
+<ion-footer>
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="dark" (click)="servicesService.insertServicioCopy()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="dark" (click)="editCard()">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="reorderCard()">
+        <ion-icon name="move-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="danger" (click)="deleteCard()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-footer>

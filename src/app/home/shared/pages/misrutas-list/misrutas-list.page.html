@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/" slot="start"></ion-icon>
     <!-- <img class="arrow-back" src="../../../../../assets//images/arrow-back-up.png" width="32px" routerLink="/" slot="start"> -->
@@ -8,12 +8,17 @@
 
 <ion-content>
   <div id="div-principal">
+    <!-- <ion-input class="search" type="text" name="filterRegistro" placeholder="Search..." [(ngModel)]="filterRegistro"></ion-input> -->
+  
+      <ion-item lines="none">
 
-    <ion-input class="search" type="text" name="filterRegistro" placeholder="Search..." [(ngModel)]="filterRegistro"></ion-input>
-  
-      <ion-item>
-  
         <ion-grid>
+
+          <ion-row>
+            <ion-col>
+              <ion-searchbar [(ngModel)]="filterRegistro" debounce="100"></ion-searchbar>
+            </ion-col>
+          </ion-row>
   
           <ion-card>
             <ion-row id="registro-list">
@@ -26,23 +31,27 @@
   
           <ion-card>
             <div id="square">
-              <div id="row-section" *ngFor="let registro of registroList | filter:filterRegistro | reverse; let i = index">
-                <div *ngIf="registro.userUid == userUid">
-                  <ion-row class="ion-align-items-center" id="registro" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
-                    <ion-col class="col-element-date">{{registro.fecha}}</ion-col>
-                    <ion-col class="col-element">{{registro.servicio}}</ion-col>
-                    <ion-col class="col-element">{{registro.direccion}}</ion-col>
-                    <ion-col class="col-element">
-                      <ion-button (click)="registroService.populateForm(registro)" routerLink="/rutas-form">
-                        <ion-icon name="create-outline"></ion-icon>
-                      </ion-button>
-                      <ion-button *ngIf="isAdmin" (click)="onDelete(registro.$key)">
-                        <ion-icon name="trash-outline"></ion-icon>
-                      </ion-button>
-                    </ion-col>
-                  </ion-row>
-                </div>                  
-              </div>
+              <ion-reorder-group (ionItemReorder)="doReorder($event)" [disabled]="">
+                <ion-reorder *ngFor="let registro of registroList | filter:filterRegistro; let i = index">
+                  <div id="row-section">
+                    <div *ngIf="registro.userUid == userUid">
+                      <ion-row class="ion-align-items-center" id="registro" [ngClass]="(i % 2 == 0) ? 'odd' : 'even'">
+                        <ion-col class="col-element-date">{{registro.fecha}}</ion-col>
+                        <ion-col class="col-element">{{registro.servicio}}</ion-col>
+                        <ion-col class="col-element">{{registro.direccion}}</ion-col>
+                        <ion-col class="col-element">
+                          <ion-button (click)="registroService.populateForm(registro)" routerLink="/home/rutas-form">
+                            <ion-icon name="create-outline"></ion-icon>
+                          </ion-button>
+                          <ion-button *ngIf="isAdmin" (click)="onDelete(registro.$key)">
+                            <ion-icon name="trash-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </div>                  
+                  </div>
+                </ion-reorder>
+              </ion-reorder-group>
           </div>
           </ion-card>
           

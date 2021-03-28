@@ -7,6 +7,10 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { CameraResultType, Plugins } from '@capacitor/core';
+import { DomSanitizer } from '@angular/platform-browser';
+const { Camera } = Plugins;
+
 
 @Component({
   selector: 'app-account',
@@ -18,13 +22,13 @@ export class AccountPage implements OnInit {
   name;
   email;
   photoUrl;
-  phoneNumber;
 
   constructor(
     private router: Router,
     public usersService: UsersService,
     private authService: AuthService,
-    private angularFirestore: AngularFirestore
+    private angularFirestore: AngularFirestore,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -33,11 +37,24 @@ export class AccountPage implements OnInit {
 
   getCurrentUser() {
     this.authService.isAuth2().subscribe(auth => {
-      // console.log(auth);
-      this.name = auth.displayName;
-      this.email = auth.email;
-      this.phoneNumber = auth.phoneNumber;
-      this.photoUrl = auth.photoURL;
+      if (auth === null) {
+        this.usersService.userForm.setValue({
+          $key: '',
+          name: '',
+          email: '',
+          urlImage: ''
+        });
+        this.photoUrl = '';
+      } else {
+        const { displayName, email, photoURL, uid } = auth;
+        this.usersService.userForm.setValue({
+          $key: uid,
+          name: displayName,
+          email,
+          urlImage: photoURL
+        });
+        this.photoUrl = photoURL;
+      }
     });
   }
 
@@ -47,20 +64,28 @@ export class AccountPage implements OnInit {
         auth.updateProfile({
           displayName: user.name,
           photoURL: user.photoUrl
-          // phoneNumber: user.phoneNumber TOCA INYECTAR LA VERIFICACION DE NUMERO DE FIREBASE CON UN CODIGO
-        }).then(() => {
-          this.name = user.name;
-        }).catch(error => {
-          // console.log('error', error);
         });
       }
       this.angularFirestore.collection('users').doc(auth.uid).update({
         name: user.name
       });
-      // console.log(auth.displayName);
     });
 
     this.router.navigate(['/']);
+  }
+
+  async takePicture() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+
+    this.photoUrl = image.webPath;
+  }
+
+  getImgContent() {
+    return this.sanitizer.bypassSecurityTrustUrl(this.photoUrl);
   }
 
 }

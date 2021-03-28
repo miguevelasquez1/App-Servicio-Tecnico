@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+* {
+font-family: Poppins-Medium;
+}
+
+// ion-card {
+//     font-weight: bold;
+//     margin-left: 20px;
+//     margin-right: 30px;
+//     box-shadow:inset 0px 0px 32px 5px rgba(0,0,0,0.20);
+//     color: #004D6D;
+// }
+
+ion-input {
+    padding: 0;
+}

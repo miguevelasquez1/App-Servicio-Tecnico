@@ -33,13 +33,13 @@ export class AuthService {
   private buildForm() {
     this.authForm = this.formBuilder.group ({
       $key: [null, []],
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      name: [''],
+      email: [''],
       phoneNumber: [],
-      password: ['', [Validators.required]],
-      customer: [true, [Validators.required]],
-      tecnico: [false, [Validators.required]],
-      admin: [false, [Validators.required]],
+      password: [''],
+      customer: [true],
+      tecnico: [false],
+      admin: [false],
       urlImage: ['']
     });
   }
@@ -70,14 +70,13 @@ export class AuthService {
     this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then(userData => {
         const uid = userData.user.uid;
-        // console.log(userData.user.);
         this.angularFirestore.collection('users').doc(uid).set({
           admin: user.admin,
           tecnico: user.tecnico,
           customer: user.customer,
           email: user.email,
           name: user.name,
-          uid: uid
+          uid
         });
         resolve(userData);
       }).catch(err => rejected(err));
@@ -92,12 +91,6 @@ export class AuthService {
     return this.firebaseAuth .authState.pipe(map(auth => auth));
   }
 
-  // saveUserProfile(user: User) {
-  //   this.firebaseAuth.auth.currentUser.updateProfile({
-  //     displayName: user.name
-  //   });
-  // }
-
   isUser(userUid) {
     return this.angularFirestore.doc<User>(`users/${userUid}`).valueChanges();
   }
@@ -106,11 +99,8 @@ export class AuthService {
     return this._emitNumber;
   }
 
-  /**
-   * @param emitNumber
-   */
   public set emitNumber(emitNumber: EventEmitter<object>) {
     this._emitNumber = emitNumber;
-}
+  }
 
 }

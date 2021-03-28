@@ -1,50 +1,38 @@
-<!-- <ion-header>
-  <div class="login-header ion-padding"></div>
-</ion-header> -->
-
 <ion-content>
 
     <h1 class="ingresar">Ingresar</h1>
 
     <div id="container">
+        <form [formGroup]="authService.authForm" (ngSubmit)="onSubmitLogin()"> 
+            <ion-item>
+                <ion-input 
+                email
+                class="input-mail"
+                type="email"
+                name="email"
+                formControlName="email"
+                placeholder="Correo Electronico">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </ion-input>
+            </ion-item>
 
-    <form [formGroup]="usersService.userForm" (ngSubmit)="onSubmitLogin()"> 
-        <ion-item>
+            <ion-item>
+                <ion-input
+                password
+                type="password"
+                name="password"
+                formControlName="password"
+                placeholder="Contraseña"
+                minlength="6">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </ion-input>
+            </ion-item>
 
-        <ion-input 
-            email
-            class="input-mail"
-            type="email"
-            name="email"
-            formControlName="email"
-            placeholder="Correo Electronico">
-        <ion-icon name="mail-outline"></ion-icon>
-        </ion-input>
-        </ion-item>
+            <ion-button expand="block" type="onSubmitLogin()">Ingresar</ion-button>
 
-        <ion-item>
-        <ion-input
-            password
-            type="password"
-            name="password"
-            formControlName="password"
-            placeholder="Contraseña"
-            minlength="6">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-        </ion-input>
-        </ion-item>
-
-        <!-- <a id="recuperar_contraseña">Olvidaste tu contraseña?</a> -->
-        <ion-button expand="block" type="onSubmitLogin()">Ingresar</ion-button>
-
-    </form>
-    <a id="registrarse" class="register" (click)="onSubmitRegister()">Registrarse</a>
+        </form>
+        <a id="registrarse" class="register" (click)="onSubmitRegister()">Registrarse</a>
     </div>
   
 </ion-content>
-
-<!-- <ion-footer>
-    <img class="tuerca" src="../../../../../assets/icon/favicon.png" width="70px">
-
-</ion-footer> -->
   

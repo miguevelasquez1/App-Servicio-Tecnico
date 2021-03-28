@@ -1,0 +1,96 @@
+<ion-menu side="start" menuId="first" contentId="main" type="push"> 
+  <ion-content>
+    <ion-list lines="none" mode="ios">
+
+      <ion-item lines="none">
+          <h1>Main Menu</h1>
+      </ion-item>
+
+      <ion-item
+      routerLink="/account"
+      lines="none"
+      (click)="homePage.onSubmit()"
+      detail="false">
+        <ion-icon class="item-icon" name="person-circle-sharp"></ion-icon>
+          <p>
+            Perfil
+          </p>
+      </ion-item>
+
+      <ion-item
+      *ngIf="isTecnico || isAdmin"
+      routerLink="/mis-rutas"
+      lines="none"
+      (click)="homePage.onSubmit()"
+      detail="false">
+        <ion-icon class="item-icon" name="browsers-outline"></ion-icon>
+        <p>
+          Mis Rutas
+        </p>
+      </ion-item>
+
+      <ion-item
+      *ngIf="isAdmin"
+      routerLink="/rutas"
+      (click)="homePage.onSubmit()"
+      detail="false">
+        <ion-icon class="item-icon" name="browsers-outline"></ion-icon>
+        <p>
+          Rutas
+        </p>
+      </ion-item>
+
+      <ion-item
+      *ngIf="isAdmin"
+      routerLink="/inventario"
+      (click)="homePage.onSubmit()"
+      detail="false">
+        <ion-icon class="item-icon" name="file-tray-stacked-outline"></ion-icon>
+        <p>
+          Inventario
+        </p>
+      </ion-item>
+
+      <ion-item
+      *ngIf="isAdmin"
+      routerLink="/usuarios"
+      (click)="homePage.onSubmit()"
+      detail="false">
+        <ion-icon class="item-icon" name="body-outline"></ion-icon>
+        <p>
+          Permisos
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon class="item-icon" name="settings-outline"></ion-icon>
+        <p>
+          Configuraciones
+        </p>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+  <ion-footer class="ion-no-border">
+
+    <ion-list lines="none">
+      <ion-item>
+        <ion-icon slot="start" name="moon"></ion-icon>
+        <p>
+          Modo Oscuro
+        </p>
+        <ion-toggle slot="end" (ionChange)="cambio()"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-button routerLink="/login" (click)="homePage.onSubmitSignOut()">Cerrar sesion</ion-button>
+      </ion-item>
+    </ion-list>
+
+  </ion-footer>
+
+</ion-menu>
+
+

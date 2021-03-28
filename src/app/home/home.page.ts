@@ -69,20 +69,6 @@ export class HomePage {
     this.showIndustriales = false;
   }
 
-  // newChat() {
-  //   this.miniChat = true;
-  //   if (this.chatService.chatForm.get('$key').value == null) {
-  //     this.chatService.addChat(this.chatService.chatForm.value);
-  //     console.log(this.chatService.chatForm.value);
-  //   }
-  //   console.log(this.miniChat);
-  // }
-
-  // onSubmitKeyChat(chat: Chat) {
-  //   this.chatKey = chat.id;
-  //   console.log(this.chatKey);
-  // }
-
 }
 
 

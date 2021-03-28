@@ -75,8 +75,6 @@ export class ChatPage implements OnInit {
 
 
   getMessage2(chat: string) {
-    // this.chatFeedPage.startChat(chat);
-    // console.log(this.chatFeedPage.listChat);
     return this.angularFirestore.collection('chats').doc(chat).collection('messages').snapshotChanges();
   }
 

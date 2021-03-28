@@ -8,6 +8,7 @@ import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { RegistroService } from '../../../../services/registro.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Registro } from 'src/app/models/registro';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-rutas-form',
@@ -21,6 +22,8 @@ export class RutasFormPage implements OnInit {
   Registro = [];
   userUid;
   userName;
+  sapo;
+  public techniciansList: Array<any>;
 
   constructor(
     private authService: AuthService,
@@ -43,11 +46,20 @@ export class RutasFormPage implements OnInit {
           };
         });
       });
-  }
 
-  public handleAddressChange(address: Address) {
-    console.log(address);
-    
+    this.authService.getUser()
+      .subscribe(users => {
+        const tecnicos = users.filter(user => {
+          const userData = user.payload.doc.data() as User;
+          return userData.tecnico;
+        });
+        this.techniciansList = tecnicos.map(user => {
+          return {
+            id: user.payload.doc.id,
+            ...user.payload.doc.data() as User
+          };
+        });
+      });
   }
 
   onSubmit() {
@@ -60,7 +72,7 @@ export class RutasFormPage implements OnInit {
       }
       this.submitted = false;
       this.registroService.form.reset();
-      this.router.navigate(['/mis-rutas']);
+      this.router.navigate(['/home/rutas']);
     }
   }
 

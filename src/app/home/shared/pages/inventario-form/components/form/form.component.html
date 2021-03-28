@@ -1,0 +1,129 @@
+<form
+  [formGroup]="inventarioService.inventarioForm"
+  (ngSubmit)="onSubmit()">
+
+  <ion-input
+    type="hidden"
+    formControlName="$key">
+  </ion-input>
+
+  <ion-item>
+    <ion-label position="floating">
+        Fecha
+    </ion-label>
+    <ion-datetime
+     required
+     formControlName="fecha"
+     [dayShortNames]="customDayShortNames"
+     displayFormat="DDD. MMM DD, YY"
+     monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-button
+   [disabled]="buttonCount >= limitCount"
+   (mouseup)="addField()"
+   (click)="inventarioService.addImagenField()">
+    Añadir imagen
+  </ion-button>
+
+  <ion-fab>
+    <ion-fab-button>
+      <ion-icon name="images-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="takePicture()">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="getPhoto()">
+        <ion-icon name="image-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <div
+   formArrayName="imagen"
+   *ngFor="let urlImage of inventarioService.imagenField.controls; let i = index">
+    <div [formGroupName]="i">
+      <h1>{{inventarioService.imageList[i] | json}}</h1>
+      <ion-item>
+        <ion-label position="floating">
+            Imagen
+        </ion-label>
+        <ion-input
+        file
+          type="file"
+          name="imagen"
+          accept=".png, .jpg"
+          (change)="onUpload($event)">
+        </ion-input>
+        <ion-button
+            (click)="inventarioService.removeImagenField(i)"
+            (mouseup)="removeField()">
+            <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-input #imagen *ngIf="inventarioService.imageList[i]"
+        type="hidden"
+        name="urlImage"
+        formControlName ="urlImage"
+        [ngModel]="inventarioService.imageList[i].urlImage">
+      </ion-input>
+    </div>
+  </div>
+
+  <div *ngFor="let imagen of inventarioService.imageList">
+    <ion-item>
+      <img [src]="imagen.urlImage" width="256px" alt="">
+    </ion-item>
+  </div>
+  
+  <ion-item>
+    <ion-label position="floating">
+        Nombre del producto
+    </ion-label>
+    <ion-input
+      required
+      type="name"
+      name="nombre"
+      minlength="1"
+      formControlName="nombre">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-label position="floating">
+    Marca
+  </ion-label>
+    <ion-input
+     required
+     type="name"
+     name="marca"
+     formControlName="marca">
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
+  <ion-label position="floating">
+    Cantidad
+  </ion-label>
+    <ion-input
+     required
+     type="number"
+     name="cantidad"
+     formControlName="cantidad">
+    </ion-input>
+  </ion-item>
+  
+
+  <ion-button
+    type="onSubmit()">
+    Agregar producto
+  </ion-button>
+
+  <ion-button
+    (click)="inventarioService.resetForm(inventarioService.inventarioForm)">
+    Reset
+  </ion-button>
+
+</form>

@@ -17,7 +17,6 @@ export class ChatService {
 
   constructor(
     private formBuilder: FormBuilder,
-    private angularFireDatabase: AngularFireDatabase,
     private angularFirestore: AngularFirestore
   ) {
     this.buildForm();

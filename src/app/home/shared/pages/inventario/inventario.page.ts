@@ -56,6 +56,7 @@ export class InventarioPage implements OnInit {
 
   newInventario() {
     this.inventarioService.inventarioForm.reset();
+    this.inventarioService.imageList = [];
     this.inventarioService.selectedInventario = new Inventario();
   }
 }

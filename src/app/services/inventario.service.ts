@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Inventario } from '../models/inventario';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
@@ -16,8 +15,7 @@ export class InventarioService {
 
   constructor(
     private formBuilder: FormBuilder,
-    private aFDB: AngularFireDatabase,
-    private storage: AngularFireStorage
+    private aFDB: AngularFireDatabase
   ) {
     this.buildForm();
   }
@@ -25,7 +23,7 @@ export class InventarioService {
   private buildForm() {
     this.inventarioForm = this.formBuilder.group ({
       $key: [null, []],
-      fecha: ['', []],
+      fecha: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
       marca: ['', [Validators.required]],
       cantidad: ['', [Validators.required]],
@@ -38,9 +36,11 @@ export class InventarioService {
   }
 
   createImagenField() {
-    return this.formBuilder.group({
+    const imageField = this.formBuilder.group({
       urlImage: ['', []]
     });
+
+    return imageField;
   }
 
   removeImagenField(i) {
@@ -58,11 +58,9 @@ export class InventarioService {
   getInventario() {
     this.inventarioList = this.aFDB.list('inventario');
     return this.inventarioList.snapshotChanges();
-
   }
 
-  insertInventario(inventario: Inventario)
-    {
+  insertInventario(inventario: Inventario) {
       this.inventarioList.push({
         nombre: inventario.nombre,
         imagen: inventario.imagen,
@@ -70,28 +68,38 @@ export class InventarioService {
         cantidad: inventario.cantidad,
         fecha: inventario.fecha
       });
-    }
+  }
 
-    updateInventario(inventario: Inventario)
-    {
-      this.inventarioList.update(inventario.$key, {
-        nombre: inventario.nombre,
-        imagen: inventario.imagen,
-        marca: inventario.marca,
-        cantidad: inventario.cantidad,
-        fecha: inventario.fecha
-      });
-    }
+  updateInventario(inventario: Inventario) {
+    this.inventarioList.update(inventario.$key, {
+      nombre: inventario.nombre,
+      imagen: inventario.imagen,
+      marca: inventario.marca,
+      cantidad: inventario.cantidad,
+      fecha: inventario.fecha
+    });
+  }
 
-    deleteInventario($key: string) {
-      this.inventarioList.remove($key);
-    }
+  deleteInventario($key: string) {
+    this.inventarioList.remove($key);
+  }
 
-    populateForm(producto) {
-      this.inventarioForm.patchValue(producto);
-      this.imageList = producto.imagen;
-      return this.formBuilder.group({
-        urlImage: [producto.imagen, []]
-      });
+  populateForm(producto) {
+    this.inventarioForm.patchValue(producto);
+    // this.imagenField.patchValue([producto.imagen]);
+    this.imageList = producto.imagen;
+    return this.formBuilder.group({
+      urlImage: [producto.imagen, []]
+    });
+  }
+
+  resetForm(form?: FormGroup) {
+    if (form != null) {
+      form.reset();
+      this.selectedInventario = new Inventario();
     }
+    this.imageList = [];
+    this.removeAllImagenField();
+  }
+
 }

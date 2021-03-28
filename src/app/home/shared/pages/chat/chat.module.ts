@@ -12,8 +12,6 @@ import { ChatService } from '../../../../services/chat.service';
 import { ChatFeedPage } from '../chat-feed/chat-feed.page';
 import { HomePage } from 'src/app/home/home.page';
 import { MessageService } from '../../../../services/message.service';
-import { DomesticosComponent } from '../servicios/domesticos/domesticos.component';
-
 
 @NgModule({
   imports: [
@@ -24,6 +22,6 @@ import { DomesticosComponent } from '../servicios/domesticos/domesticos.componen
     ReactiveFormsModule
   ],
   declarations: [],
-  providers: [ChatFeedPage, DomesticosComponent, MessageService, HomePage, ChatService]
+  providers: [ChatFeedPage, MessageService, HomePage, ChatService]
 })
 export class ChatPageModule {}

@@ -3,6 +3,21 @@
     src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
 }
 
+ion-toolbar {
+    --background: var(--ion-background-color);
+}
+
+ion-item {
+    --border: none;
+}
+
+ion-searchbar {
+    --box-shadow: none;
+    --border-radius: 20px;
+    --background: none;
+    font-family: 'Poppins-Light';
+}
+
 .arrow-back {
     font-size: 24px;
     margin-left: 10px;
@@ -81,10 +96,6 @@ ion-header {
 
 ion-item {
     --background: transparent;
-}
-
-ion-col {
-    // color: #030328;
 }
 
 h1 {

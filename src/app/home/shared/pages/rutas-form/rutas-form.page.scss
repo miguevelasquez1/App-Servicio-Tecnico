@@ -28,7 +28,7 @@ ion-content {
 ion-item {
     margin: 15px;
     border-radius: 30px;
-    // --background: #f0f0f0;
+    --background: var(--ion-color-light-shade);
 }
 
 ion-input {

@@ -1,0 +1,43 @@
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../../../assets/fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+* {
+    font-family: Poppins-Medium;
+}
+
+ion-menu, ion-content, ion-list, ion-item {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-dark-contrast);
+}
+
+ion-icon {
+    --color: var(--ion-color-dark-contrast);
+}
+
+h1, p {
+    color: white;
+}
+
+ion-item {
+    --border: none;
+}
+
+ion-list {
+    padding: 0;
+    margin-top: 30%;
+}
+
+img, ion-icon {
+    margin-right: 7px;
+}
+
+ion-footer {
+    --border: none;
+}

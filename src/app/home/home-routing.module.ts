@@ -7,33 +7,56 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
-        path: 'servicios',
+        path: 'rutas',
         children: [
           {
             path: '',
-            loadChildren: () => import('./shared/pages/servicios/servicios.module').then(m => m.ServiciosPageModule)
-          }
+            loadChildren: () => import('./shared/pages/misrutas-list/misrutas-list.module').then( m => m.MisrutasListPageModule),
+            canActivate: [AuthGuard]
+          },
+        ]
+      },
+      {
+        path: 'rutas-form',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./shared/pages/rutas-form/rutas-form.module').then( m => m.RutasFormPageModule),
+            canActivate: [AuthGuard]
+          },
+        ]
+      },
+      {
+        path: 'account',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./shared/pages/account/account.module').then( m => m.AccountPageModule),
+            canActivate: [AuthGuard]
+          },
+        ]
+      },
+      {
+        path: 'charts',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./shared/pages/charts/charts.module').then( m => m.ChartsPageModule),
+            canActivate: [AuthGuard]
+          },
         ]
       },
       {
         path: '',
-        redirectTo: '/home/servicios',
+        redirectTo: '/home/account',
         pathMatch: 'full'
-      },
-      {
-        path: 'chat-feed',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('./shared/pages/chat-feed/chat-feed.module').then(m => m.ChatFeedPageModule)
-          }
-        ]
-      },
+      }
     ]
   }
+
 ];
 
 @NgModule({

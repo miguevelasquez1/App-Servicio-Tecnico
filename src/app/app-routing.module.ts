@@ -11,6 +11,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'servicios',
+    loadChildren: () => import('./pages/servicios/servicios.module').then( m => m.ServiciosPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
     canActivate: [AuthGuard]
@@ -40,11 +45,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'mis-rutas',
-    loadChildren: () => import('./home/shared/pages/misrutas-list/misrutas-list.module').then( m => m.MisrutasListPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'chat-feed',
     loadChildren: () => import('./home/shared/pages/chat-feed/chat-feed.module').then( m => m.ChatFeedPageModule),
     canActivate: [AuthGuard]
@@ -52,11 +52,6 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./home/shared/pages/chat/chat.module').then( m => m.ChatPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'account',
-    loadChildren: () => import('./home/shared/pages/account/account.module').then( m => m.AccountPageModule),
     canActivate: [AuthGuard]
   },
   {
@@ -79,6 +74,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/shared/pages/usuarios/usuarios.module').then( m => m.UsuariosPageModule),
     canActivate: [AuthGuard]
   }
+
 ];
 
 @NgModule({

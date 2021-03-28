@@ -3,6 +3,17 @@
     src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
 }
 
+ion-toolbar {
+    --background: var(--ion-background-color);
+}
+
+img {
+    border-radius: 10px;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+
 .arrow-back {
     font-size: 24px;
     margin-left: 10px;
@@ -19,18 +30,15 @@
     // text-align: center;
 }
 
-// .col-image {
-//     margin-right: 50px;
-// }
+.col-image {
+    height: 60px;
+    margin: 1px;
+    padding: 0;
+}
 
 .col-element-date {
     font-size: 9.5px;
     // text-align: center;
-}
-
-.col-element-cantidad {
-    // text-align: center;
-    margin-left: 30px;
 }
 
 .add-icon {
@@ -55,7 +63,6 @@
 
 #registro-list {
     color: #808080;
-    padding-left: 7px;
     font-weight: bold;
 }
 
@@ -75,6 +82,10 @@
     font-family: Poppins-Medium;
 }
 
+ion-col {
+    text-align: center;
+}
+
 ion-content {
     font-size: 13px;
 }
@@ -91,10 +102,6 @@ ion-header {
 
 ion-item {
     --background: transparent;
-}
-
-ion-col {
-    // color: #030328;
 }
 
 h1 {

@@ -1,0 +1,72 @@
+<ng-container *ngIf="servicesService.cardDefault; else cardReorder">
+  <div *ngFor="let item of servicesService.itemsCopy">
+    <div *ngFor="let servicio of item.serviciosArray">
+      <ion-card (click)="onClickMe()">
+        <ion-card-header>
+          <ion-card-subtitle>{{servicio.subtitle}}</ion-card-subtitle>
+          <ion-card-title>{{servicio.title}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{servicio.description}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #cardReorder>
+  <ion-reorder-group *ngIf="servicesService.cardReorder; else cardForm" (ionItemReorder)="doReorder($event)" disabled="false">
+    <ion-reorder *ngFor="let item of servicesService.itemsCopy">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>{{item.subTitle}}</ion-card-subtitle>
+          <ion-card-title>{{item.title}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{item.description}}
+        </ion-card-content>
+      </ion-card>
+    </ion-reorder>
+</ion-reorder-group>
+</ng-template>
+
+<ng-template #cardForm>
+  <form [formGroup]="servicesService.servicesForm" (ngSubmit)="servicesService.onSubmit()">
+    <ion-input
+    formControlName="$key">
+      
+    </ion-input>
+    <div formArrayName="serviciosArray" *ngFor="let servicio of servicesService.serviciosArray.controls; let i = index;">
+      <div [formGroupName]="i">
+        {{i}}
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>
+              <ion-input
+                formControlName="subTitle"
+              ></ion-input>
+            </ion-card-subtitle>
+            <ion-card-title>
+              <ion-input
+                formControlName="title"
+              >
+              </ion-input>
+            </ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-textarea
+              formControlName="description"
+            >
+            </ion-textarea>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+

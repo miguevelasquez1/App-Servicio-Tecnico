@@ -3,6 +3,14 @@
     src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
 }
 
+ion-toolbar {
+    --background: var(--ion-background-color);
+}
+
+ion-col {
+    text-align: center;
+}
+
 .arrow-back {
     font-size: 24px;
     margin-left: 10px;
@@ -19,7 +27,6 @@
 
 .col-element {
     font-size: 11.5px;
-    text-align: right;
 }
 
 .col-element {
@@ -28,7 +35,6 @@
 
 .col-element-date {
     font-size: 9.5px;
-    text-align: center;
 }
 
 .add-icon {

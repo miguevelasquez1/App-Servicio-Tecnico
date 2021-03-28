@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/" slot="start"></ion-icon>
     <!-- <img class="arrow-back" src="../../../../../assets//images/arrow-back-up.png" width="32px" routerLink="/" slot="start"> -->
@@ -9,32 +9,26 @@
 </ion-header>
 
 <ion-content>
-  <div>
-
     <form [formGroup]="usersService.userForm" (ngSubmit)="onSubmitUpdate(this.usersService.userForm.value)">
-      <img class="photo" [src]="photoUrl" width="250px">
+      <img (click)="takePicture()" class="photo" [src]="getImgContent()" width="250px" alt="image account">
     
       <ion-list>
-        <ion-item >
+
+        <ion-input type="hidden" name="$key" formControlName="$key"></ion-input>
+
+        <ion-input type="hidden" name="urlImage" formControlName="urlImage"></ion-input>
+
+        <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input [value]="name" formControlName="name"></ion-input>
+          <ion-input name="name" formControlName="name"></ion-input>
         </ion-item>
     
         <ion-item>
           <ion-label position="floating">Email</ion-label>
-          <ion-input [value]="email" formControlName="email" [disabled]="true"></ion-input>
+          <ion-input name="email" formControlName="email"></ion-input>
         </ion-item>
 
-        <!-- <ion-item>
-          <ion-label position="floating">Numero celular</ion-label>
-          <ion-input [value]="phoneNumber" formControlName="phoneNumber"></ion-input>
-        </ion-item> -->
       </ion-list>
-      <!-- <ion-item>
-        <ion-label>Toggle</ion-label>
-        <ion-toggle slot="end" checked></ion-toggle>
-      </ion-item> -->
-      <ion-button type="onSubmitUpdate(this.usersService.userForm.value)">Guardar</ion-button>
+      <ion-button [disabled]="!usersService.userForm.valid" type="onSubmitUpdate(this.usersService.userForm.value)">Guardar</ion-button>
   </form>
-  </div>
 </ion-content>

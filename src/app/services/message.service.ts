@@ -58,7 +58,6 @@ export class MessageService {
     }).then(messageData => {
 
       const id = messageData.key;
-      // console.log(userData.user.);
       this.afs.collection('chats').doc(chat).collection('messages').doc(id).set({
         userUid: message.userUid,
         userName: message.userName,

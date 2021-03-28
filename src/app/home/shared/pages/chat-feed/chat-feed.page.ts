@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DomesticosComponent } from '../servicios/domesticos/domesticos.component';
-import { HomePage } from 'src/app/home/home.page';
 import { AuthService } from '../../../../services/auth.service';
 import { ChatService } from '../../../../services/chat.service';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Chat } from 'src/app/models/chat';
-import { map } from 'rxjs/operators';
 // import { ChatPage } from '../chat/chat.page';
 
 @Component({
@@ -28,10 +25,8 @@ export class ChatFeedPage implements OnInit {
   // messagesJson = this.domesticosComponent.
 
   constructor(
-    private angularFirestore: AngularFirestore,
     public chatService: ChatService,
     private authService: AuthService,
-    public domesticosComponent: DomesticosComponent
   ) { }
 
   ngOnInit() {
@@ -46,23 +41,7 @@ export class ChatFeedPage implements OnInit {
         };
       });
     });
-  //  this.chatsCollection = this.angularFirestore.collection<Chat>('chats');
-  //  this.chats = this.chatsCollection.snapshotChanges().pipe(
-  //    map(actions => {
-  //      return actions.map(a => {
-  //        const data = a.payload.doc.data() as Chat;
-  //        const id = a.payload.doc.id;
-  //        return {id, ...data};
-  //      });
-  //    }));
-
   }
-
-  // startChat(chat: Chat) {
-  //   console.log(chat.id);
-  //   this.chatKey = chat.id;
-  //   console.log('renombre', this.chatKey);
-  // }
 
   getCurrentUser() {
     this.authService.isAuth2().subscribe(auth => {

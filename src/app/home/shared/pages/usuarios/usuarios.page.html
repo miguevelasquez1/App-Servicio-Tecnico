@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-icon class="arrow-back" name="arrow-back-outline" routerLink="/" slot="start"></ion-icon>
     <!-- <img class="arrow-back" src="../../../../../assets//images/arrow-back-up.png" width="32px" routerLink="/" slot="start"> -->
@@ -24,19 +24,19 @@
           </ion-card>
   
           <ion-card>
-            <div id="square">
-              <div id="row-section" *ngFor="let user of list">
+            <ion-item id="square" *ngFor="let user of list">
+              <div id="row-section">
                 <ion-row class="ion-align-items-center" id="registro">
                   <!-- <form [formGroup]="this.authService.authForm"> -->
-                    <ion-col class="col-element-name">{{user.name}}</ion-col>
-                    <ion-col class="col-element">{{user.email}}</ion-col>
-                    <ion-col class="col-element-action">
+                    <ion-col size="4" class="col-element-name">{{user.name}}</ion-col>
+                    <ion-col size="4" class="col-element">{{user.email}}</ion-col>
+                    <ion-col size="4" class="col-element-action">
                       <ion-toggle [(ngModel)]="user.tecnico" (ionChange)="isTecnico(user)"></ion-toggle>
                     </ion-col>
                   <!-- </form> -->
                 </ion-row>
               </div>
-          </div>
+          </ion-item>
           </ion-card>
           
           

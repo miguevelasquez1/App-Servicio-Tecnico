@@ -48,20 +48,13 @@ export class RegisterPage implements OnInit {
             auth.updateProfile({
               displayName: data.name,
               photoURL: 'https://firebasestorage.googleapis.com/v0/b/aes-capacitor.appspot.com/o/user.png?alt=media&token=3434ac34-6835-43a9-883f-0900c4ff857d'
-            }).then(() => {
-              // console.log(auth);
-            }).catch(error => {
-              // console.log('error', error);
             });
           }
-        })
-        
-        // console.log(auth);
+        });
       });
-      this.router.navigate(['/home']);
+      this.router.navigate(['/register']);
     })
     .catch((err) => this.presentAlert(err.code) );
-    console.log(this.authService.authForm.value);
   }
 
   async presentAlert(code) {
@@ -75,8 +68,6 @@ export class RegisterPage implements OnInit {
       });
       await alert.present();
   } else {
-      console.log('Ocorreu algum erro desconhecido! \n Codigo erro: ' + code);
-      console.log(code);
   }
 
   }

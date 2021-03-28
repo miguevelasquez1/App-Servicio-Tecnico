@@ -1,0 +1,66 @@
+// img, ion-icon {
+//     margin-right: 7px;
+// }
+
+// ion-button {
+//   color: var(--ion-color-primary-tint);
+//   --border-color: var(--ion-color-primary-tint);
+
+// }
+
+
+@font-face {
+  font-family: Poppins-Light;
+  src: url('../../../assets/fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url('../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+* {
+  font-family: Poppins-Medium;
+}
+
+// ion-content {
+//   --background: var(--ion-color-primary-tint);
+// }
+
+ion-searchbar{
+  --border-radius: 10px;
+  --box-shadow: none;
+}
+
+ion-card {
+  --border-radius: 50px;
+}
+
+ion-grid {
+  padding: 0;
+}
+
+ion-col {
+  padding: 0;
+}
+
+ion-list {
+  padding-top: 0;
+  border-radius: 0 0 20px 20px;
+}
+
+// .items-list {
+//   margin-left: 25%;
+// }
+
+.col-padding {
+  padding: 0 8px 0 8px;
+}
+
+.col-checkbox {
+  margin-top: 48.5px;
+}
+
+.tab-trash {
+  --ripple-color: var(--ion-color-danger);
+}

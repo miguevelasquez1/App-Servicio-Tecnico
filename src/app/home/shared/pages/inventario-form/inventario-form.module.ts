@@ -8,6 +8,7 @@ import { InventarioFormPageRoutingModule } from './inventario-form-routing.modul
 
 import { InventarioFormPage } from './inventario-form.page';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     IonicModule,
     InventarioFormPageRoutingModule
   ],
-  declarations: [InventarioFormPage]
+  declarations: [FormComponent, InventarioFormPage]
 })
 export class InventarioFormPageModule {}

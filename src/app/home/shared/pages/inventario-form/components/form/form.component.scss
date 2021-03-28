@@ -1,0 +1,29 @@
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../../../../../../../assets/fonts/Poppins-Light.ttf');
+}
+
+ion-item {
+    margin: 15px;
+    border-radius: 15px;
+    --background: var(--ion-color-light-shade);
+}
+
+ion-label {
+    font-family: Poppins-Light;
+}
+
+ion-input {
+    font-family: Poppins-Light;
+}
+
+ion-button {
+    font-family: Poppins-Medium;
+
+    margin: 15px;
+}
