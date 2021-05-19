@@ -1,0 +1,50 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-icon class="arrow-back" name="arrow-back-outline" [routerLink]="['/home/account']" slot="start"></ion-icon>
+    <ion-title>Personal Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="usersService.userForm" (ngSubmit)="presentAlertConfirm(this.usersService.userForm.value)">
+    <!-- <div style="position: relative;"> -->
+      <!-- <ion-button class="camera-button" (click)="takePicture()">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-button> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <img (click)="takePicture()" class="photo" [src]="getImgContent()" alt="image account">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    <!-- </div> -->
+
+    <ion-input hidden="true" name="$key" formControlName="$key"></ion-input>
+
+    <ion-input hidden="true" name="urlImage" formControlName="urlImage"></ion-input>
+
+    <h6>Name</h6>
+    <ion-item lines="none">
+      <!-- <ion-label position="floating">Nombre</ion-label> -->
+      <ion-input required name="name" formControlName="name"></ion-input>
+    </ion-item>
+
+    <h6>Email</h6>
+    <ion-item lines="none">
+      <!-- <ion-label position="floating">Email</ion-label> -->
+      <ion-input name="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button [disabled]="!usersService.userForm.valid" type="presentAlertConfirm(this.usersService.userForm.value)">Guardar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
+</ion-content>

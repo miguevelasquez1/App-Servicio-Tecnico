@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Registro } from 'src/app/models/registro';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class RegistroService {
 
   constructor(
     private formBuilder: FormBuilder,
-    private aFDb: AngularFireDatabase
+    private aFDb: AngularFireDatabase,
+    private http: HttpClient
   ) {
     this.buildForm();
    }
@@ -31,8 +33,9 @@ export class RegistroService {
       servicio: ['', [Validators.required]],
       producto: ['', [Validators.required]],
       direccion: ['', [Validators.required]],
-      precio: ['', [Validators.required]]
-  });
+      precio: ['', [Validators.required]],
+      estado: ['']
+    });
   }
 
   getRegistros() {
@@ -52,6 +55,7 @@ export class RegistroService {
       producto: registro.producto,
       direccion: registro.direccion,
       precio: registro.precio,
+      estado: registro.estado
     });
   }
 
@@ -65,6 +69,7 @@ export class RegistroService {
       producto: registro.producto,
       direccion: registro.direccion,
       precio: registro.precio,
+      estado: registro.estado
     });
   }
 

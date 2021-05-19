@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroService } from '../../../../services/registro.service';
+import { AlertController } from '@ionic/angular';
+
 import { AuthService } from '../../../../services/auth.service';
 import { InventarioService } from '../../../../services/inventario.service';
 import { Inventario } from 'src/app/models/inventario';
@@ -15,7 +16,7 @@ export class InventarioPage implements OnInit {
   userUid: string;
 
   constructor(
-
+    private alertCtrl: AlertController,
     private authService: AuthService,
     public inventarioService: InventarioService
   ) { }
@@ -37,10 +38,23 @@ export class InventarioPage implements OnInit {
     );
   }
 
-  onDelete($key: string) {
-    if (confirm('¿Estas seguro de que quieres elimnarlo?')){
-      this.inventarioService.deleteInventario($key);
-    }
+  public async onDelete($key: string) {
+    const alert = await this.alertCtrl.create({
+      header: '¿Seguro de que quieres eliminarlo?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        }, {
+          text: 'Aceptar',
+          handler: () => {
+            this.inventarioService.deleteInventario($key);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   getRole() {

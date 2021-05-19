@@ -37,7 +37,8 @@ export class InventarioService {
 
   createImagenField() {
     const imageField = this.formBuilder.group({
-      urlImage: ['', []]
+      urlImage: ['', []],
+      dateImage: ['', []]
     });
 
     return imageField;
@@ -86,11 +87,13 @@ export class InventarioService {
 
   populateForm(producto) {
     this.inventarioForm.patchValue(producto);
-    // this.imagenField.patchValue([producto.imagen]);
-    this.imageList = producto.imagen;
-    return this.formBuilder.group({
-      urlImage: [producto.imagen, []]
-    });
+    if (producto.imagen) {
+      this.imageList = producto.imagen;
+      return this.formBuilder.group({
+        urlImage: [producto.imagen.urlImage, []],
+        dateImage: [producto.imagen.dateImage, []]
+      });
+    }
   }
 
   resetForm(form?: FormGroup) {

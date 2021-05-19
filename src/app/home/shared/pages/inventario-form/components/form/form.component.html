@@ -14,9 +14,10 @@
     <ion-datetime
      required
      formControlName="fecha"
+     (ionChange)="getDate($event)"
      [dayShortNames]="customDayShortNames"
      displayFormat="DDD. MMM DD, YY"
-     monthShortNames="jan, feb, mar, apr, mai, jun, jul, aug, sep, okt, nov, des">
+     monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Ago, Sep, Oct, Nov, Dic">
     </ion-datetime>
   </ion-item>
 
@@ -45,7 +46,6 @@
    formArrayName="imagen"
    *ngFor="let urlImage of inventarioService.imagenField.controls; let i = index">
     <div [formGroupName]="i">
-      <h1>{{inventarioService.imageList[i] | json}}</h1>
       <ion-item>
         <ion-label position="floating">
             Imagen
@@ -69,14 +69,29 @@
         formControlName ="urlImage"
         [ngModel]="inventarioService.imageList[i].urlImage">
       </ion-input>
+      <ion-input
+       hidden="true"
+       formControlName="dateImage"
+      ></ion-input>
     </div>
   </div>
 
-  <div *ngFor="let imagen of inventarioService.imageList">
-    <ion-item>
+  <div class="collection ion-padding">
+    <div class="collection-item" text-center *ngFor="let imagen of imageList">
       <img [src]="imagen.urlImage" width="256px" alt="">
-    </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="8">
+           <span>{{imagen.dateImage}}</span>
+          </ion-col>
+          <ion-col style="text-align: end;" (click)="removeImage(imagen)">
+            <ion-icon name="trash-bin-outline" style="font-size: 24px;"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
+
   
   <ion-item>
     <ion-label position="floating">
@@ -115,15 +130,20 @@
     </ion-input>
   </ion-item>
   
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-end">
+        <ion-button
+         type="onSubmit()">
+          Agregar producto
+        </ion-button>
 
-  <ion-button
-    type="onSubmit()">
-    Agregar producto
-  </ion-button>
-
-  <ion-button
-    (click)="inventarioService.resetForm(inventarioService.inventarioForm)">
-    Reset
-  </ion-button>
+        <ion-button
+         (click)="inventarioService.resetForm(inventarioService.inventarioForm)">
+          Reset
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </form>

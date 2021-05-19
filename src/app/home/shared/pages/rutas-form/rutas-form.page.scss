@@ -17,12 +17,21 @@
     font-family: Poppins-Light;
 }
 
+* {
+    font-family: Poppins-Medium;
+}
+
+ion-toolbar {
+    --background: var(--ion-background-color);
+}
+
 ion-title {
     font-family: Poppins-Medium;
 }
 
-ion-content {
-    // --background: #01010E;
+ion-icon:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 ion-item {
@@ -36,7 +45,21 @@ ion-input {
 }
 
 ion-button {
-    font-family: Poppins-Medium;
-
+    font-family: Poppins-Light;
     margin: 15px;
+    --border-radius: 10px;
+}
+
+ion-segment-button, ion-button {
+    text-transform: none;
+}
+
+.wait-segment-button {
+    --background-checked: var(--ion-color-danger);
+    --color-checked: var(--ion-color-danger-contrast);
+}
+
+.success-segment-button {
+    --background-checked: var(--ion-color-success);
+    --color-checked: var(--ion-color-success-contrast);
 }

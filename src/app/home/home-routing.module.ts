@@ -10,6 +10,16 @@ const routes: Routes = [
     // canActivate: [AuthGuard],
     children: [
       {
+        path: 'inventario',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./shared/pages/inventario/inventario.module').then( m => m.InventarioPageModule),
+            canActivate: [AuthGuard]
+          },
+        ]
+      },
+      {
         path: 'rutas',
         children: [
           {
@@ -53,8 +63,27 @@ const routes: Routes = [
         path: '',
         redirectTo: '/home/account',
         pathMatch: 'full'
+      },
+      {
+        path: 'personal-data',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./shared/pages/personal-data/personal-data.module').then( m => m.PersonalDataPageModule),
+            canActivate: [AuthGuard]
+          },
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/home/personal-data',
+        pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./shared/pages/settings/settings.module').then( m => m.SettingsPageModule)
   }
 
 ];

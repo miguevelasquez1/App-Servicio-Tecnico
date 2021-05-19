@@ -10,4 +10,5 @@ export class Registro {
     precio: number;
     userUid?: string;
     userName?: string;
+    estado: string;
 }

@@ -46,18 +46,6 @@ ion-searchbar {
     margin: 0px;
 }
 
-// #item-principal {
-//     margin: 30px;
-//     border-radius: 20px;
-//     --background: #f0f0f0;
-//     font-family: Poppins-Medium;
-//     margin-top: 100px;
-// }
-
-#registro {
-    // color: #000000;
-}
-
 #registro-list {
     color: #808080;
     padding-left: 7px;
@@ -65,13 +53,10 @@ ion-searchbar {
 }
 
 #square {
-    // background: #ffffff;
     border-radius: 5px;
 }
 
 #row-section {
-    // background: #ffffff;
-    // border-bottom: #e0e0e0 solid 0.2px;
     font-size: 11.5px;
     padding-left: 7px
 }
@@ -89,16 +74,20 @@ ion-grid {
     margin: 0;
 }
 
-ion-header {
-    background: #030328;
-    color: white;
-}
-
 ion-item {
     --background: transparent;
 }
 
 h1 {
     color: #f0f0f0;
+}
+
+ion-fab:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+ion-col {
+    text-align: center;
 }
 

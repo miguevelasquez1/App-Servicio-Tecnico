@@ -17,6 +17,14 @@
   font-family: Poppins-Medium;
 }
 
+ion-toolbar {
+  --background: var(--ion-background-color);
+}
+
 #chart1 {
   font-family: Poppins-Medium;
+}
+
+ion-card {
+  border-radius: 15px;
 }

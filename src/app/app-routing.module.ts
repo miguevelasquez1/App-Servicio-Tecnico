@@ -60,11 +60,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'inventario',
-    loadChildren: () => import('./home/shared/pages/inventario/inventario.module').then( m => m.InventarioPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'inventario-form',
     loadChildren: () => import('./home/shared/pages/inventario-form/inventario-form.module').then( m => m.InventarioFormPageModule),
     canActivate: [AuthGuard]
@@ -83,4 +78,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

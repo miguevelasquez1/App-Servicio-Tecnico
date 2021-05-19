@@ -19,12 +19,12 @@ const { Camera } = Plugins;
 })
 export class AccountPage implements OnInit {
 
-  name;
-  email;
-  photoUrl;
+  public name: string;
+  public email: string;
+  public photoUrl: string;
+  public occupation: string;
 
   constructor(
-    private router: Router,
     public usersService: UsersService,
     private authService: AuthService,
     private angularFirestore: AngularFirestore,
@@ -32,10 +32,32 @@ export class AccountPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getCurrentUser();
   }
 
-  getCurrentUser() {
+  ionViewWillEnter() {
+    this.getCurrentUser();
+    this.getRole();
+  }
+
+  private getRole() {
+    this.authService.isAuth2().subscribe(auth => {
+      if (auth) {
+        this.authService.isUser(auth.uid).subscribe(userRole => {
+          const isAdmin = Object.assign({}, userRole).admin;
+          const isTecnico = Object.assign({}, userRole).tecnico;
+          if (isAdmin) {
+            this.occupation = 'Administrador';
+          } else if (isTecnico) {
+            this.occupation = 'Técnico';
+          } else {
+            this.occupation = 'Cliente';
+          }
+        });
+      }
+    });
+  }
+
+  private getCurrentUser() {
     this.authService.isAuth2().subscribe(auth => {
       if (auth === null) {
         this.usersService.userForm.setValue({
@@ -53,25 +75,17 @@ export class AccountPage implements OnInit {
           email,
           urlImage: photoURL
         });
+        this.name = displayName;
         this.photoUrl = photoURL;
       }
     });
   }
 
-  onSubmitUpdate(user: User) {
-    this.authService.isAuth2().subscribe(auth => {
-      if (auth){
-        auth.updateProfile({
-          displayName: user.name,
-          photoURL: user.photoUrl
-        });
-      }
-      this.angularFirestore.collection('users').doc(auth.uid).update({
-        name: user.name
-      });
-    });
-
-    this.router.navigate(['/']);
+  public async doRefresh(event) {
+    await this.getCurrentUser();
+    setTimeout(() => {
+      event.target.complete();
+    }, 200);
   }
 
   async takePicture() {

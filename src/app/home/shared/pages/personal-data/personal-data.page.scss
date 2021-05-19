@@ -1,0 +1,73 @@
+@font-face {
+    font-family: Poppins-Medium;
+    src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../../../../../assets/fonts/Poppins-Light.ttf');
+}
+
+* {
+    font-family: Poppins-Medium;
+}
+
+ion-toolbar {
+    --background: var(--ion-background-color);
+}
+
+.arrow-back {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+ion-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.photo {
+    // display: block;
+    // margin: auto;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.camera-button {
+    z-index: 2;
+    position: absolute;
+    left: 56%;
+    top: 5%;
+    margin: auto;
+}
+
+ion-item {
+    margin: 5px 30px 15px 30px;
+    --padding-top: 10px;
+    --padding-right: 10px;
+    --padding-bottom: 10px;
+    --padding-left: 10px;
+    --border-radius: 15px;
+    --border-color: var(--ion-color-light-shade);
+    --border-width: 1px;
+    --background: var(--ion-color-light-tint);
+}
+
+ion-input {
+    font-family: Poppins-Medium;
+    font-size: 16px;
+}
+
+h6 {
+    font-family: Poppins-Light;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+ion-button {
+    text-transform: none;
+    --border-radius: 10px;
+    font-family: Poppins-Light;
+}

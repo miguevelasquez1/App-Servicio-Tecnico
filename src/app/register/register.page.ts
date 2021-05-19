@@ -40,19 +40,27 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  onSubmitRegister(user: User) {
-    this.authService.register(this.authService.authForm.value).then((res) => {
-      this.authService.isAuth2().subscribe(auth => {
-        this.authService.isUser(auth.uid).subscribe(data => {
-          if (auth.email == data.email){
-            auth.updateProfile({
-              displayName: data.name,
-              photoURL: 'https://firebasestorage.googleapis.com/v0/b/aes-capacitor.appspot.com/o/user.png?alt=media&token=3434ac34-6835-43a9-883f-0900c4ff857d'
-            });
-          }
-        });
+  onSubmitRegister() {
+    this.authService.register(this.authService.authForm.value)
+    .then(async () => {
+      await this.authService.isAuth2().subscribe(async auth => {
+        if (auth) {
+          await this.authService.isUser(auth.uid).subscribe(data => {
+            console.log(data, 'data');
+            if (data) {
+              if (auth.email === data.email){
+                auth.updateProfile({
+                  displayName: data.name,
+                  photoURL: 'https://firebasestorage.googleapis.com/v0/b/aes-capacitor.appspot.com/o/user.png?alt=media&token=3434ac34-6835-43a9-883f-0900c4ff857d'
+                })
+                  .then(() => {
+                    this.router.navigateByUrl('/home/account', {state: {intro: true}});
+                  });
+              }
+            }
+          });
+        }
       });
-      this.router.navigate(['/register']);
     })
     .catch((err) => this.presentAlert(err.code) );
   }

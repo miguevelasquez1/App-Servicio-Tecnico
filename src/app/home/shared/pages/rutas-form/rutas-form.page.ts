@@ -9,6 +9,8 @@ import { RegistroService } from '../../../../services/registro.service';
 import { AuthService } from '../../../../services/auth.service';
 import { Registro } from 'src/app/models/registro';
 import { User } from 'src/app/models/user';
+import { ChartService } from '../../../../services/chart.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-rutas-form',
@@ -17,18 +19,21 @@ import { User } from 'src/app/models/user';
 })
 export class RutasFormPage implements OnInit {
 
-  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+  @ViewChild('placesRef') placesRef: GooglePlaceDirective;
 
   Registro = [];
   userUid;
   userName;
-  sapo;
   public techniciansList: Array<any>;
+  private month: number;
+  private year: number;
 
   constructor(
     private authService: AuthService,
     public registroService: RegistroService,
-    private router: Router
+    private router: Router,
+    private chartService: ChartService,
+    private currencyPipe: CurrencyPipe
     ) { }
 
     submitted: boolean;
@@ -36,6 +41,14 @@ export class RutasFormPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+
+    this.registroService.form.valueChanges.subscribe( form => {
+      if (form.precio) {
+        this.registroService.form.patchValue({
+          precio: this.currencyPipe.transform(form.precio.replace(/\D/g, '').replace(/^0+/, ''), 'USD', 'symbol-narrow', '1.0-0')
+        }, {emitEvent: false} );
+      }
+    } );
 
     this.registroService.getRegistros()
       .subscribe(list => {
@@ -67,12 +80,23 @@ export class RutasFormPage implements OnInit {
     if (this.registroService.form.valid) {
       if (this.registroService.form.get('$key').value == null) {
         this.registroService.insertRegistro(this.registroService.form.value);
+        console.log(new Date().getFullYear(), this.year);
+        if (new Date().getFullYear() === this.year) {
+          this.chartService.addPoint(this.month);
+        }
       } else {
         this.registroService.updateRegistro(this.registroService.form.value);
+        // if (new Date().getFullYear() === this.year) {
+        //   if (this.month) {
+        //     this.chartService.addPoint(this.month);
+        //   }
+        // }
       }
       this.submitted = false;
       this.registroService.form.reset();
       this.router.navigate(['/home/rutas']);
+    } else {
+      this.registroService.form.markAllAsTouched();
     }
   }
 
@@ -95,5 +119,10 @@ export class RutasFormPage implements OnInit {
       form.reset();
       this.registroService.selectedRegistro = new Registro();
     }
+  }
+
+  public getDate(e) {
+    this.month = new Date(e.target.value).getMonth();
+    this.year = new Date(e.target.value).getFullYear();
   }
 }

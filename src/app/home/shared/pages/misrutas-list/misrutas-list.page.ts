@@ -6,6 +6,8 @@ import { Registro } from 'src/app/models/registro';
 import { ItemReorderEventDetail } from '@ionic/core';
 
 import * as FontAwesome from '@fortawesome/free-solid-svg-icons';
+import { AlertController } from '@ionic/angular';
+import { ChartService } from 'src/app/services/chart.service';
 
 @Component({
   selector: 'app-misrutas-list',
@@ -20,7 +22,9 @@ export class MisrutasListPage implements OnInit {
 
   constructor(
     private authService: AuthService,
-    public registroService: RegistroService
+    public registroService: RegistroService,
+    private alertController: AlertController,
+    private chartService: ChartService
   ) { }
 
   fontAwesome = FontAwesome;
@@ -40,10 +44,34 @@ export class MisrutasListPage implements OnInit {
       });
   }
 
-  onDelete($key: string) {
-    if (confirm('¿Estas seguro de que quieres elimnarlo?')){
-      this.registroService.deleteRegistro($key);
-    }
+  // onDelete($key: string) {
+
+  //   // if (confirm('¿Estas seguro de que quieres elimnarlo?')){
+  //     this.registroService.deleteRegistro($key);
+  //   // }
+  // }
+
+  async onDelete(ruta: Registro) {
+    const alert = await this.alertController.create({
+      cssClass: 'alert_submit',
+      header: '¿Seguro de que quieres eliminar esta ruta?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'yes',
+          handler: () => {
+            this.registroService.deleteRegistro(ruta.$key);
+            this.chartService.deletePoint(ruta.fecha);
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   getRole() {

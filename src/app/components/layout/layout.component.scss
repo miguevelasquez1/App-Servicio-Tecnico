@@ -12,17 +12,8 @@
     font-family: Poppins-Medium;
 }
 
-ion-menu, ion-content, ion-list, ion-item {
-    --background: var(--ion-color-primary);
-    --color: var(--ion-color-dark-contrast);
-}
-
-ion-icon {
-    --color: var(--ion-color-dark-contrast);
-}
-
-h1, p {
-    color: white;
+ion-content, ion-item, ion-footer {
+    --background: var(--ion-background-color);
 }
 
 ion-item {
@@ -36,8 +27,4 @@ ion-list {
 
 img, ion-icon {
     margin-right: 7px;
-}
-
-ion-footer {
-    --border: none;
 }

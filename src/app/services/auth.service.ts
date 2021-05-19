@@ -88,7 +88,7 @@ export class AuthService {
   }
 
   isAuth2() {
-    return this.firebaseAuth .authState.pipe(map(auth => auth));
+    return this.firebaseAuth.authState.pipe(map(auth => auth));
   }
 
   isUser(userUid) {

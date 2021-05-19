@@ -8,6 +8,10 @@
     src: url('../../../../../../../assets/fonts/Poppins-Light.ttf');
 }
 
+* {
+    font-family: Poppins-Medium;
+}
+
 ion-item {
     margin: 15px;
     border-radius: 15px;
@@ -24,6 +28,55 @@ ion-input {
 
 ion-button {
     font-family: Poppins-Medium;
-
+    --border-radius: 10px;
     margin: 15px;
+}
+
+span {
+    font-family: Poppins-Light;
+    color: var(--ion-color-light-tint);
+}
+
+.collection {
+    @media (max-width: 779px) and (min-width: 0px) {
+        column-count: 2;
+    }
+
+    @media (max-width: 1039px) and (min-width: 780px) {
+        column-count: 3;
+    }
+
+    @media (max-width: 1299px) and (min-width: 1040px) {
+        column-count: 4;
+    }
+
+    @media (min-width: 1300) {
+        column-count: 5;
+    }
+}
+
+.collection-item {
+    display: inline-block;
+    padding: 3px 3px 8px 3px;
+    border-radius: 12px;
+    cursor: zoom-in;
+    img {
+        border-radius: 12px;
+    }
+}
+
+.collection-item:hover {
+    animation: tapAnimation 0.25s cubic-bezier(0.31, 1, 0.34, 1) forwards;
+}
+
+@keyframes tapAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.05);
+        transform: scale(1);
+    }
 }

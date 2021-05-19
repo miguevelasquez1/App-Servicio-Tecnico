@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { InventarioService } from 'src/app/services/inventario.service';
 
-import { Plugins, CameraResultType, Capacitor, FilesystemDirectory, CameraPhoto, CameraSource } from '@capacitor/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Plugins, CameraResultType, Capacitor, CameraSource } from '@capacitor/core';
+
+
+
+import { InventarioService } from 'src/app/services/inventario.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { FormGroup } from '@angular/forms';
-import { Inventario } from 'src/app/models/inventario';
-const { Camera, Filesystem, Storage } = Plugins;
+const { Camera } = Plugins;
 
 const isAvailable = Capacitor.isPluginAvailable('Camera');
 
@@ -19,18 +21,22 @@ const isAvailable = Capacitor.isPluginAvailable('Camera');
 })
 export class FormComponent implements OnInit {
 
-  private submitted: boolean;
+  private files: Array<Blob>;
   public buttonCount: number;
   public limitCount: number;
-  public uploadPercent: Observable<number | undefined>;
-  private imageList: Array<string>;
+  private imageList: Array<any>;
   private inventarioList: Array<object>;
 
   constructor(
     public inventarioService: InventarioService,
     private storage: AngularFireStorage,
     private router: Router,
-  ) { }
+    private alertCtrl: AlertController
+  ) {
+    this.files = [];
+    this.imageList = [];
+    this.disableButtonImage();
+  }
 
   ngOnInit() {
     this.inventarioService.getInventario()
@@ -43,29 +49,43 @@ export class FormComponent implements OnInit {
       });
     });
 
-    const prueba = this.inventarioService.inventarioForm.value;
-    // if (prueba.imagen === undefined) {
-    //   this.imageList = [];
-    // } else {
-    //   this.inventarioService.imageList = prueba.imagen;
-    // }
-    this.buttonCount = 0;
-    this.limitCount = 10;
-    this.uploadPercent = new Observable<number | undefined>();
+    this.disableButtonImage();
+    this.imageList = [...this.inventarioService.imageList];
+    console.log(this.inventarioService.imageList, 'ngOnInit');
   }
 
-  onUpload(e) {
+  ionViewWillEnter() {
+    this.imageList = [...this.inventarioService.imageList];
+    console.log(this.inventarioService.imageList, 'ionViewWillEnter');
+  }
+
+  private disableButtonImage() {
+    this.limitCount = 10;
+    this.buttonCount = this.inventarioService.imageList.length;
+  }
+
+  getDate(e) {
+    return new Date(e.target.value).getMonth();
+  }
+
+  public onUpload(e) {
     for (let i = 0; i < (e.target.files.length); i++) {
       const id = Math.random().toString(36).substring(2);
       const file = e.target.files[i];
       const filePath = `uploads/${id}`;
       const ref = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, file);
-      this.uploadPercent = task.percentageChanges();
       task.snapshotChanges().pipe(
         finalize(() => {
           ref.getDownloadURL().subscribe(url => {
-            this.inventarioService.imageList.push({urlImage: url.toString()});
+            const date = new Date();
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+              'July', 'August', 'September', 'October', 'November', 'December'];
+
+            const month = monthNames[date.getMonth()];
+            const day = date.getDate();
+            const year = date.getFullYear();
+            this.inventarioService.imageList.push({urlImage: url.toString(), dateImage: `${day} ${month} / ${year}`});
           });
         })
       ).subscribe();
@@ -73,17 +93,57 @@ export class FormComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.submitted = true;
     if (this.inventarioService.inventarioForm.valid) {
-      if (this.inventarioService.inventarioForm.get('$key').value == null) {
-        this.inventarioService.insertInventario(this.inventarioService.inventarioForm.value);
+
+      if (this.files.length > 0) {
+        this.uploadPhotosToFirebase();
       } else {
-        this.inventarioService.updateInventario(this.inventarioService.inventarioForm.value);
+        this.sendData();
       }
-      this.submitted = false;
-      this.inventarioService.resetForm(this.inventarioService.inventarioForm);
-      this.router.navigate(['/inventario']);
     }
+  }
+
+  private async uploadPhotosToFirebase() {
+    for (const file of this.files) {
+      const id = Math.random().toString(36).substring(2);
+      const filePath = `uploads/${id}`;
+      const ref = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, file);
+      console.log('2');
+      task.snapshotChanges().pipe(
+        finalize(async () => {
+          await ref.getDownloadURL().subscribe(url => {
+            const date = new Date();
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
+            const month = monthNames[date.getMonth()];
+            const day = date.getDate();
+            const year = date.getFullYear();
+            this.inventarioService.addImagenField();
+            this.inventarioService.imageList.push({urlImage: url.toString(), dateImage: `${day} ${month} / ${year}`});
+            console.log(this.inventarioService.inventarioForm.value, 'value');
+            if (file === this.files[this.files.length - 1]) {
+              this.sendData();
+            }
+          });
+        })
+      ).subscribe();
+    }
+  }
+
+  private sendData() {
+    console.log('a2');
+    if (this.inventarioService.inventarioForm.get('$key').value === null) {
+      this.inventarioService.insertInventario(this.inventarioService.inventarioForm.value);
+    } else {
+      this.inventarioService.updateInventario(this.inventarioService.inventarioForm.value);
+    }
+
+    console.log(this.inventarioService.inventarioForm.value, 'value');
+
+    this.inventarioService.resetForm(this.inventarioService.inventarioForm);
+    this.router.navigate(['/home/inventario']);
   }
 
   public addField(): void {
@@ -94,12 +154,33 @@ export class FormComponent implements OnInit {
     this.buttonCount--;
   }
 
-  takePicture() {
-    Camera .getPhoto({
+  public async takePicture() {
+    const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.Base64
     });
+
+    const rawData = atob(image.base64String);
+    const bytes = new Array(rawData.length);
+    for (let x = 0; x < rawData.length; x++) {
+        bytes[x] = rawData.charCodeAt(x);
+    }
+    const arr = new Uint8Array(bytes);
+    this.files.push(new Blob([arr], {type: 'image/png'}));
+
+    const reader  = new FileReader();
+    reader.onloadend = () => {
+      const date = new Date();
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+
+      const month = monthNames[date.getMonth()];
+      const day = date.getDate();
+      const year = date.getFullYear();
+      this.imageList.push({urlImage: reader.result, dateImage: `${day} ${month} / ${year}`});
+    };
+    reader.readAsDataURL(this.files[this.files.length - 1]);
   }
 
   public async getPhoto() {
@@ -110,6 +191,44 @@ export class FormComponent implements OnInit {
       quality: 100
     });
 
+  }
+
+  public async removeImage(image: string) {
+    const alert = await this.alertCtrl.create({
+      header: '¿Seguro de que quieres eliminar esta imagen?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }, {
+          text: 'accept',
+          handler: () => {
+            const index = this.imageList.indexOf( image );
+            this.imageList.splice(index, 1);
+
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
+  public exitWithouthSave() {
+    this.alertCtrl.create({
+      header: '¿Deseas salir sin guardar los cambios?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        }, {
+          text: 'accept',
+          handler: () => {
+            this.router.navigate(['/home/inventario']);
+          }
+        }
+      ]
+    });
   }
 
 }

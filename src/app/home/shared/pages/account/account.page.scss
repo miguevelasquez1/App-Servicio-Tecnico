@@ -8,6 +8,11 @@
     src: url('../../../../../assets/fonts/Poppins-Medium.ttf');
 }
 
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../../../../../assets/fonts/Poppins-Bold.ttf');
+}
+
 .item.sc-ion-label-md-h, .item .sc-ion-label-md-h {
     font-family: Poppins-light;
 }
@@ -29,10 +34,40 @@ ion-content {
     margin-left: 10px;
 }
 
-.photo {
-    margin: 50px 50px 0 50px;
-    border-radius: 50%;
-    border: 3px solid #ffffff;
+ion-label {
+    margin-left: 15px;
+}
+
+.user-name h2 {
+    text-transform: lowercase;
+}
+    
+.user-name h2::first-letter {
+    text-transform: uppercase;
+}
+
+.user-occupation {
+    font-family: Poppins-Medium;
+}
+
+ion-col {
+    padding: 0;
+}
+
+ion-avatar {
+    width:100% !important;
+    height : 100% !important;
+    max-width: 80px !important;  //any size
+    max-height: 80px !important; //any size
+    // margin: auto;
+}
+
+.camera-button {
+    z-index: 2;
+    position: absolute;
+    left: 13%;
+    top: 5%;
+    margin: auto;
 }
 
 #edit {
@@ -48,11 +83,7 @@ ion-content {
 
 ion-list {
     border-radius: 20px;
-    margin: 0 5% 5% 5%;
-}
-
-ion-item {
-    margin: 5%;
+    margin: 5% 5% 0 5%;
 }
 
 ion-list, ion-input, ion-label, ion-item {
